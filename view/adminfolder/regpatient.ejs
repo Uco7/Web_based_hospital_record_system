@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin/Registered Patients Page</title>
+     
+      
+          <link rel="stylesheet" href="/css/staff.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    
+          <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+          <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+          
+          
+          </head>
+          
+          <body>
+       
+              
+    
+            <%- include('./adminInclude_folder/navBar') %> <!-- Admin NavBar -->
+            <%- include('./adminInclude_folder/sideBar') %> <!-- Admin Sidebar -->
+          
+   
+         
+            <%- include('./adminInclude_folder/appointent') %>
+
+        <div class="container wrap-table regp-tb">
+          <div class="resolve-complaint">
+            <span  class="h4">
+              Patients Cards Records
+            </span>
+            <input type="text" id="customSearchBox" class="form-control custom-search-input" placeholder="Search...">
+        </div>
+           
+          <table  >
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Candidate Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Role</th>
+                <th>Date of Birth</th>
+                <th>LGA</th>
+                <th>Gender</th>
+                <th style="border: 1px solid;">Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (regPatients && regPatients.length > 0) { %>
+                <% regPatients.forEach((patient, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= patient.fName %></td>
+                    <td><%= patient.email %></td>
+                    <td><%= patient.phone_no %></td>
+                    <td><%= patient.address %></td>
+                    <td><%= patient.role %></td>
+                    <td><%= new Date(patient.date_of_birth).toLocaleDateString() %></td>
+                    <td><%= patient.LGA %></td>
+                    <td><%= patient.gender %></td>
+                    <td><a href="/admin/reg/patient/page?id=<%= patient._id %>"><i class="fa-solid fa-pen" style="color: darkorange; font-size: x-large;" ></i>update</a></td>
+                    <td><a href="#" class="deletePatientBtn" data-id="<%= patient._id %>"><i class="fa-solid fa-trash" style="color: red; font-size: x-large;" ></i>delete</a></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="9" class="text-center">No records found</td>
+                </tr>
+              <% } %>
+            </tbody>
+            </table>
+
+          </div>
+    </div>
+    </div>
+   
+    <!-- jQuery library -->
+    <script src="/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+  
+    <script src="/js/userDashBord.js"></script>
+    <script src="/js/labTech.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "100%";
+          document.getElementById("mySidenav").style.height = "40%";
+          document.getElementById("main").classList.add("open"); // Add class to push down
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").classList.remove("open"); // Remove class to return to original position
+        }
+        </script> 
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/deleteRecord.js"></script>
+
+
+</body>
+</html>
+

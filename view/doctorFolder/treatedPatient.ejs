@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor  Treated Patient Dashbord</title>
+     <link rel="stylesheet" href="/css/staff.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    
+    </head>
+    <body>
+          <!-- small screen nav ............................................................. -->
+
+
+          <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+          <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+          
+          
+          </head>
+          
+          <body>
+            <%- include('./doctor_includeFolder/navBar') %>
+             
+          
+       
+    
+    <div class="container-fluid">
+        <div class="row">
+        <!-- doc side bar.......................................... -->
+        <%- include('./doctor_includeFolder/sideBar') %>
+        <!-- doc side bar.......................................... -->
+            <div class="col-12 col-md-9 col-lg-10 main-content">
+              
+                
+        </div>
+        <%- include('./doctor_includeFolder/appointment') %>
+
+        <div class="container wrap-table  treatp-table">
+          <div class="resolve-complaint">
+            <span  class="h4">
+              Patient Medicle Treatment Schedule
+            </span>
+            <input type="text" id="customSearchBox" class="form-control custom-search-input" placeholder="Search..." style="width: 38vw;">
+        </div>
+           
+          <table  >
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Candidate Name</th>
+                <th>Diagonse illness</th>
+                <th> Asigned Doctor</th>
+                <th> Treatment Date</th>
+              </tr>
+            </thead>
+            <% assignedPatients.forEach((patient, index) => { %>
+              <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= patient.fName %></td>
+                  <td><%= patient.illness %></td>
+                  <td><%= patient.doc_name %></td>
+                  <td><%= new Date(patient.currentDate).toLocaleDateString() %></td>
+              </tr>
+          <% }); %>
+      </tbody>
+            </table>
+
+          </div>
+            <!-- doc form.......................................... -->
+            <%- include('./doctor_includeFolder/docForm') %>
+            <!-- doc form.......................................... -->
+    </div>
+    </div>
+   
+    <!-- jQuery library -->
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/doc.js"></script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+  
+    
+   
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "100%";
+          document.getElementById("mySidenav").style.height = "40%";
+          document.getElementById("main").classList.add("open"); // Add class to push down
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").classList.remove("open"); // Remove class to return to original position
+        }
+        </script> 
+ 
+
+</body>
+</html>

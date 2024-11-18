@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin  Dashboard</title>
+     <link rel="stylesheet" href="/css/staff.css">
+  
+    
+          <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+          <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+          
+          
+          </head>
+          
+          <body>
+       
+              
+    
+            <%- include('./adminInclude_folder/navBar') %> <!-- Admin NavBar -->
+  <%- include('./adminInclude_folder/sideBar') %> <!-- Admin Sidebar -->
+          
+   
+  <%- include('./adminInclude_folder/appointent') %>
+
+     
+        <div class="container wrap-table  prec-tb">
+          <div class="resolve-complaint">
+            <span  class="h4">
+              Patients Cards Records
+            </span>
+            <input type="text" id="customSearchBox" class="form-control custom-search-input" placeholder="Search...">
+        </div>
+           
+          <table  >
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Candidate Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Illness</th>
+                <th>Genotype</th>
+                <th>Blood Group</th>
+                <th>HIV Status</th>
+                <th>AIDS Status</th>
+                <th>Sugar Level</th>
+                <th>Fever Status</th>
+                <th>Pregnancy Status</th>
+                <th>Malaria Status</th>
+                <th>Doctor's Remark</th>
+                <th style="border: 1px solid;">Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (patientRecords && patientRecords.length > 0) { %>
+                <% patientRecords.forEach((record, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= record.fName %></td>
+                    <td><%= record.patient_email %></td>
+                    <td><%= record.phone_no %></td>
+                    <td><%= record.address %></td>
+                    <td><%= record.illness %></td>
+                    <td><%= record.genotype %></td>
+                    <td><%= record.blood_group %></td>
+                    <td><%= record.hivStatus %></td>
+                    <td><%= record.aidsStatus %></td>
+                    <td><%= record.sugarLevel %></td>
+                    <td><%= record.feverStatus %></td>
+                    <td><%= record.pregnancyStatus %></td>
+                    <td><%= record.malariaStatus %></td>
+                    <td style="border: 1px solid;"><%= record.docRemark || 'No Remark' %></td>
+                    <td><a href="/admin/test/result/page?id=<%= record._id %>"><i class="fa-solid fa-pen" style="color: darkorange; font-size: x-large;" >update</i></a></td>
+                    <td><a href="#" class="deleteTestBtn" data-id="<%= record._id %>"><i class="fa-solid fa-trash" style="color: red; font-size: x-large;" ></i> delete</a></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="16" class="text-center">No records found</td>
+                </tr>
+              <% } %>
+            </tbody>
+            </table>
+
+          </div>
+    </div>
+    </div>
+   
+    <!-- jQuery library -->
+    <script src="/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+  
+    <script src="/js/userDashBord.js"></script>
+    <script src="/js/labTech.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "100%";
+          document.getElementById("mySidenav").style.height = "40%";
+          document.getElementById("main").classList.add("open"); // Add class to push down
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").classList.remove("open"); // Remove class to return to original position
+        }
+        </script> 
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/deleteRecord.js"></script>
+
+
+</body>
+</html>
+

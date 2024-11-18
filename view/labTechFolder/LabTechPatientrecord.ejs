@@ -1,0 +1,103 @@
+
+          
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>LabTech Dashboard/Patient Records</title>
+                 <link rel="stylesheet" href="/css/staff.css">
+                <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+                <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+                
+                </head>
+                <body>
+                      <!-- small screen nav ............................................................. -->
+            
+            
+                      <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+                      <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+                      
+                      
+                      </head>
+                      
+                      <body>
+                        <%- include('./labTech_includeFolder/navBar') %>
+            <%- include('./labTech_includeFolder/sideBar') %>
+           
+           
+            <%- include('./labTech_includeFolder/appointment') %>
+                    <div class="container wrap-table  regp-table">
+                      <div class="resolve-complaint">
+                        <span  class="h4">
+                          Patients Cards Records
+                        </span>
+                        <input type="text" id="customSearchBox" class="form-control custom-search-input" placeholder="Search...">
+                    </div>
+                       
+                      <table  >
+                        <thead>
+                          <tr>
+                            <th>S/N</th>
+                            <th>Candidate Name</th>
+                            <th>Email</th>
+                            <th>Doctor Name</th>
+                            
+                            <th>Doctor Email</th>
+                            <th>Date</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% if (cardRecords.length > 0) { %>
+                            <% cardRecords.forEach((record, index) => { %>
+                              <tr>
+                                <td><%= index + 1 %></td>
+                                <td><%= record.patient_name || 'N/A' %></td>
+                                <td><%= record.patient_email || 'N/A' %></td>
+                                <td><%= record.doc_name || 'N/A' %></td>
+                                <td><%= record.doc_email || 'N/A' %></td>
+                                <td><%= record.currentDate ? new Date(record.currentDate).toLocaleDateString() : 'N/A' %></td>
+                                <td style="border: 1px solid;"> <a href="#"><i class="fa-solid fa-pen" style="color: darkorange; font-size: x-large"></i></a></td>
+                                <td><a href="#"><i class="fa-solid fa-trash" style="color: red;font-size: x-large;"></i></a></td>
+                              </tr>
+                            <% }); %>
+                          <% } else { %>
+                            <tr>
+                              <td colspan="8">No records found</td>
+                            </tr>
+                          <% } %>
+                        </tbody>
+                        </table>
+            
+                      </div>
+                </div>
+                </div>
+               
+                <!-- jQuery library -->
+                <script src="/jquery/jquery.min.js"></script>
+                <!-- Bootstrap JS Bundle (includes Popper) -->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+              
+                <script src="/js/userDashBord.js"></script>
+                <script src="/js/labTech.js"></script>
+                <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+                <script>
+                    function openNav() {
+                      document.getElementById("mySidenav").style.width = "100%";
+                      document.getElementById("mySidenav").style.height = "40%";
+                      document.getElementById("main").classList.add("open"); // Add class to push down
+                    }
+                    
+                    function closeNav() {
+                      document.getElementById("mySidenav").style.width = "0";
+                      document.getElementById("main").classList.remove("open"); // Remove class to return to original position
+                    }
+                    </script> 
+                      <script src="/jquery/jquery.min.js"></script>
+                      <script src="/js/labTech.js"></script>
+            </body>
+            </html>
+            

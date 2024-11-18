@@ -1,0 +1,40 @@
+<div class="container  wrap-table lab- appointment-tb" style="display: none;">
+    <div class="wrap-txt text-center">
+      <h2 class="text-center" > Booked Session</h2>
+    </div>
+  <table>
+        <tr>
+          <th>S/N</th>
+          <th>Candidate Name</th>
+          <th>Email</th>
+          <th> Phone Number</th>
+          <th> Date</th>
+         
+          <th> Take Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <% if(appointment&&appointment.length>0 ) {%>
+            <% appointment.forEach((data,index)=>{%>
+
+                <td><%= index +1 %></td>
+                <td><%= data.name %></td>
+                <td><%= data.email %></td>
+                <td><%= data.address %></td>
+                <td><%= data.phone_no %></td>
+                
+                
+                <td><a href="#" style="color: red ; font-size: large;font-weight: 600;text-decoration: none;">Delete </a></td>
+                <%  }) %>
+                <% }else{%>
+                     <td colspan="6">No Records</td>   
+              
+              
+             <%} %>
+        </tr>
+      </tbody>
+    
+    </table>
+
+  </div>

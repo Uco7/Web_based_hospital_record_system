@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabTechnician  Profile Page</title>
+    <link rel="stylesheet" href="/css/patientProfile.css">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <img src="/image/ucogo.png" alt="logo" style="width: 50px; height: 50px; border-radius: 50%;">
+            <div class="notification">    
+                <a class="nav-link" href="#"><i class="fa-regular fa-bell" style="color:rgb(255, 135, 0);"></i>
+                <div id="red">1</div></a>
+            </div>
+            <ul class="nav justify-content-end">
+                <div class="userimg">
+                    <img src="data:image/jpeg;base64," alt="Profile Image"style="width: 50px; height: 50px; border-radius: 50px; margin-left: -5rem;">
+
+
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link log-out" href="#">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+
+<body>
+    
+
+    <div class="container wrapp" id="complaintSection" >
+     <h2 class="" id="bio">Patient Test result Data</h2>
+     <form id="updateTestResult">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="fName">Full Name</label>
+                  <input type="text" name="fName" id="fName" class="form-control" placeholder="Full Name" value="<%= testResult.fName %>" required>
+              </div>
+              <div class="form-group">
+                  <label for="phone_no">Phone Number</label>
+                  <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="Phone Number" value="<%= testResult.phone_no %>" required>
+              </div>
+              <div class="form-group">
+                  <label for="patient_email">Patient Email</label>
+                  <input type="email" name="patient_email" id="patient_email" class="form-control" placeholder="Patient Email" value="<%= testResult.patient_email %>" required>
+              </div>
+              <div class="form-group">
+                  <label for="address">Address</label>
+                  <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<%= testResult.address %>" required>
+              </div>
+              <div class="form-group">
+                  <label for="docRemark">Doctor's Remark</label>
+                  <input type="text" name="docRemark" id="docRemark" class="form-control" placeholder="Doctor's Remark" value="<%= testResult.docRemark %>">
+                  <input type="hidden" name="testId" id="docRemark" class="form-control" placeholder="Doctor's Remark" value="<%= testResult._id %>">
+              </div>
+              <div class="form-group">
+                  <label for="blood_group">Blood Group</label>
+                  <select name="blood_group" id="blood_group" class="form-control" required>
+                      <option value="" disabled>Select Blood Group</option>
+                      <option value="A+" <%= testResult.blood_group === 'A+' ? 'selected' : '' %>>A+</option>
+                      <option value="A-" <%= testResult.blood_group === 'A-' ? 'selected' : '' %>>A-</option>
+                      <option value="B+" <%= testResult.blood_group === 'B+' ? 'selected' : '' %>>B+</option>
+                      <option value="B-" <%= testResult.blood_group === 'B-' ? 'selected' : '' %>>B-</option>
+                      <option value="AB+" <%= testResult.blood_group === 'AB+' ? 'selected' : '' %>>AB+</option>
+                      <option value="AB-" <%= testResult.blood_group === 'AB-' ? 'selected' : '' %>>AB-</option>
+                      <option value="O+" <%= testResult.blood_group === 'O+' ? 'selected' : '' %>>O+</option>
+                      <option value="O-" <%= testResult.blood_group === 'O-' ? 'selected' : '' %>>O-</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="genotype">Genotype</label>
+                  <select name="genotype" id="genotype" class="form-control" required>
+                      <option value="" disabled>Select Genotype</option>
+                      <option value="AA" <%= testResult.genotype === 'AA' ? 'selected' : '' %>>AA</option>
+                      <option value="AS" <%= testResult.genotype === 'AS' ? 'selected' : '' %>>AS</option>
+                      <option value="SS" <%= testResult.genotype === 'SS' ? 'selected' : '' %>>SS</option>
+                      <option value="AC" <%= testResult.genotype === 'AC' ? 'selected' : '' %>>AC</option>
+                      <option value="SC" <%= testResult.genotype === 'SC' ? 'selected' : '' %>>SC</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="illness">Illness</label>
+                  <input type="text" name="illness" id="illness" class="form-control" placeholder="Illness" value="<%= testResult.illness %>">
+              </div>
+              <div class="form-group">
+                  <label for="doc_name">Assign Doctor</label>
+                  <input type="text" name="doc_name" id="doc_name" class="form-control" placeholder="Assigned Doctor" value="<%= testResult.doc_name %>">
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="doc_email">Doctor Email</label>
+                  <input type="text" name="doc_email" id="doc_email" class="form-control" placeholder="Doctor Email" value="<%= testResult.doc_email %>">
+              </div>
+              <div class="form-group">
+                  <label for="pulseRate">Pulse Rate (0-100)</label>
+                  <input type="number" name="pulseRate" id="pulseRate" class="form-control" placeholder="Pulse Rate" value="<%= testResult. pulseRate %>" required>
+              </div>
+              <div class="form-group">
+                  <label for="bloodPressure">Blood Pressure</label>
+                  <select name="bloodPressure" id="bloodPressure" class="form-control" required>
+                      <option value="" disabled>Select Blood Pressure</option>
+                      <option value="Normal" <%= testResult.bloodPressure === 'Normal' ? 'selected' : '' %>>Normal</option>
+                      <option value="Elevated" <%= testResult.bloodPressure === 'Elevated' ? 'selected' : '' %>>Elevated</option>
+                      <option value="High" <%= testResult.bloodPressure === 'High' ? 'selected' : '' %>>High</option>
+                      <option value="Very High" <%= testResult.bloodPressure === 'Very High' ? 'selected' : '' %>>Very High</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="hivStatus">HIV Status</label>
+                  <select name="hivStatus" id="hivStatus" class="form-control" required>
+                      <option value="" disabled>Select HIV Status</option>
+                      <option value="Positive" <%= testResult.hivStatus === 'Positive' ? 'selected' : '' %>>Positive</option>
+                      <option value="Negative" <%= testResult.hivStatus === 'Negative' ? 'selected' : '' %>>Negative</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="aidsStatus">AIDS Status</label>
+                  <select name="aidsStatus" id="aidsStatus" class="form-control" required>
+                      <option value="" disabled>Select AIDS Status</option>
+                      <option value="Positive" <%= testResult.aidsStatus === 'Positive' ? 'selected' : '' %>>Positive</option>
+                      <option value="Negative" <%= testResult.aidsStatus === 'Negative' ? 'selected' : '' %>>Negative</option>
+                  </select>
+              </div>
+            <div class="form-group">
+              <label for="sugarLevel">Sugar Level (0-200)</label>
+              <input type="number" name="sugarLevel" id="sugarLevel" class="form-control" placeholder="Sugar Level"  value="<%= testResult.sugarLevel  %>"  required>
+            </div>
+            <div class="form-group">
+              <label for="feverStatus">Fever Status</label>
+              <select name="feverStatus" id="feverStatus" class="form-control" required>
+                <option value="++"<%= testResult.feverStatus === '++' ? 'selected' : '' %>>++</option>
+                <option value="+" <%= testResult.feverStatus === '+' ? 'selected' : '' %>>+</option>
+                <option value="normal"<%= testResult.feverStatus === 'normal' ? 'selected' : '' %>>Normal</option>
+                <option value="-"<%= testResult.feverStatus === '-' ? 'selected' : '' %>>-</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pregnancyStatus">Pregnancy Status</label>
+              <select name="pregnancyStatus" id="pregnancyStatus" class="form-control" required>
+                <option value="">Select Pregnancy Status</option>
+                <option value="Positive" <%= testResult.pregnancyStatus === 'Positive' ? 'selected' : '' %>>Positive</option>
+                <option value="Negative"<%= testResult.pregnancyStatus === 'Negative' ? 'selected' : '' %>>Negative</option>
+            </select>
+            </div>
+            <div class="form-group">
+              <label for="malariaStatus">Malaria Status</label>
+              <select name="malariaStatus" id="malariaStatus" class="form-control" required>
+                <option value="">Select Malaria Status</option>
+                <option value="High" <%= testResult.malariaStatus === 'High' ? 'selected' : '' %>>High</option>
+                <option value="Normal" <%= testResult.malariaStatus === 'Normal' ? 'selected' : '' %>>Normal</option>
+                <option value="Accurate" <%= testResult.malariaStatus === 'Accurate' ? 'selected' : '' %>>Accurate</option>
+                <option value="Negative"<%= testResult.malariaStatus === 'Negative' ? 'selected' : '' %>>Negative</option>
+            </select>
+            </div>
+          </div>
+        </div>
+        <div class="btn-cont text-center">
+          <button type="button" class="btn btn-primary testResultBtn">Update</button>
+        </div>
+      </form>
+ </div>
+                    
+                 </div>
+                 <!-- <script>
+                    document.querySelector('#btn').addEventListener('click',function(e){
+                        e.preventDefault()
+                        const   button=this;
+                        button.innerHTML='saving...'
+                        setTimeout(function(){
+                            button.innerHTML='saved'
+                            },3000)
+                        setTimeout(function(){
+                          
+                            window.location="/user/dashBord"
+                            },4000)
+                            })
+                 </script> -->
+                 <script src="/jquery/jquery.min.js"></script>
+                 <script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+                 <script src="/js/labTech.js"></script>
+                 <script src="/js/updateRecord.js"></script>
+
+</body>
+</html>

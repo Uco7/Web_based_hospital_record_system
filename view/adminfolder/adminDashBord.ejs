@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospital Admin Dashboard</title>
+  <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admindashbord.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+  <%- include('./adminInclude_folder/navBar') %> <!-- Admin NavBar -->
+  <%- include('./adminInclude_folder/sideBar') %> <!-- Admin Sidebar -->
+<div class="container">
+  <h2></h2>
+</div>
+
+<div class="container box-cont">
+  <div class="boxes">
+      <div class="box box1">
+          <div class="num" id="num1">5</div>
+          <div class="box-txt" id="box-txt1">Booked Appointment</div>
+      </div>
+     
+      <div class="box box1">
+              <div class="text"></div>
+          <div class="num" id="num1"><%=regPatients?regPatients.length:"0" %></div>
+          <div class="box-txt" id="box-txt1">Registered Patients</div>
+      </div>
+      <div class="box box2">
+          <div class="num" id="num2"><%= regStaff? regStaff.length:"0" %> </div>
+          <div class="box-txt" id="box-txt2">Medical Staffs</div>
+      </div>
+     
+  </div>
+</div>
+<%- include('./adminInclude_folder/appointent') %>
+       <div class="wrap-all all-tb" >
+       <div class="container  admin-tb1" style="height: 50vh;">
+        <div class="wrap-txt text-center">
+          <h2 class="text-center" style="color: #b8860B;">Doctors Records</h2>
+        </div>
+      <table class="table">
+          <tr>
+            <th>S/N</th>
+            <th>Candidate Name</th>
+            <th>Diagnosed Illness</th>
+            <th>Assigned Doctor</th>
+            <th>Treatment Date</th>
+            <th>Take Action</th>
+          </tr>
+        </thead>
+        <tbody id="doctorTableBody">
+          <% if (assignedPatients && assignedPatients.length > 0) { %>
+            <% assignedPatients.forEach((result, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= result.fName %></td>
+                <td><%= result.illness %></td>
+                <td><%= result.doc_name %></td>
+                <td><%= new Date(result.currentDate).toLocaleDateString() %></td>
+                <td> <a href="#"></a></td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="5" class="text-center">No records found</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="container  admin-tb2" style="height: 50vh;">
+      <div class="wrap-txt text-center">
+        <h2 class="text-center" style="color:#b8860B;">Lab Technician Records </h2>
+      </div>
+    <table class="table">
+            <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Candidate Name</th>
+            <th>Diagnosed Illness</th>
+            <th>Assigned Doctor</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="labTechTableBody">
+          <% if (patientRecords &&patientRecords.length > 0) { %>
+            <%       patientRecords.forEach((result, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= result.fName %></td>
+                <td><%= result.illness %></td>
+                <td><%= result.doc_name %></td>
+                <td><%= new Date(result.currentDate).toLocaleDateString() %></td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="5" class="text-center">No records found</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+  </div>
+  <script>
+    
+  </script>
+  <script src="/jquery/jquery.min.js"></script>
+             
+             
+              <script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+ 
+  <script src="/js/admin.js"></script>
+  
+</body>
+</html>

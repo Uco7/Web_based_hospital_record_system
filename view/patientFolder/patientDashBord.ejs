@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+     <link rel="stylesheet" href="/css/staff.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    
+    </head>
+    <body>
+          <!-- small screen nav ............................................................. -->
+
+
+          <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+          <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+          
+          
+          </head>
+          
+          <body>
+              <div class="nav-sm admin-navSm"  >
+          
+                  <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="menu-icon">&#9776; </span>
+                  <div id="mySidenav" class="sidenav sm-sidde">
+                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                      <h1 style="padding: 10px; font-size: larger;">Dashboard </h1>
+              
+                      <ul class="nav flex-column cont" style="color: black;">
+                        <li class="active" id="home">
+                          <a href="/patients/dashbord"   aria-current="page"  >Home</a>
+                        </li>
+                        <li>
+                          <i class="fa-solid fa-user"></i><a href="/patients/profile/page">
+                            My Profile
+                          </a>
+                        </li>
+                        <li id="purchase_card">
+                          <i class="fa-regular fa-id-card"></i><a href="#">Purchase Card</a>
+                        
+                            <li id="patient-cards">
+                              <i class="fa-regular fa-id-card"></i>  <a href="#" >Purchased cards</a>
+                            </li>
+                            <!-- <li>
+                              <a href="#">Buy Card</a>
+                            </li> -->
+                        
+                        </li>
+                  
+                        <li id="test-result">
+                          <i class="fa-solid fa-vials"></i><a href="#">Treatment Schedule
+        
+                          </a>
+                        </li>
+                    </ul>  
+                    </div>
+              </div>
+                <!-- small screen nav ............................................................. -->
+            <nav class="navbar navbar-expand-lg nav-big" id="navBig" >
+              <div class="container-fluid">
+                  <img src="/image/ucogo.png" alt="logo" style="width: 50px; height: 50px; border-radius: 50%;">
+                  <div class="notification">    
+                      <a class="nav-link" href="#"><i class="fa-regular fa-bell" style="color:rgb(255, 135, 0);"></i>
+                      <div id="red">1</div></a>
+                  </div>
+                  <ul class="nav justify-content-end">
+                      <div class="userimg">
+                         <img src="" alt="">                </div>
+                      <li class="nav-item">
+                          <a class="nav-link log-out" href="/logout">Log out</a>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+           
+          
+    
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-3 col-lg-2 sidebar">
+                <div id="user">
+                    
+                </div>
+                <!-- including sidebar -->
+                <ul class="nav flex-column cont" style="color: black;">
+                  <li class="active" id="home">
+                    <a href="/patients/dashbord"   aria-current="page"  >Home</a>
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-user"></i><a href="/patients/profile/page">
+                      My Profile
+                    </a>
+                  </li>
+                  <li id="purchase_card">
+                    <i class="fa-regular fa-id-card"></i><a href="#">Purchase Card</a>
+                  </li>
+                      <li id="patient-cards">
+                        <i class="fa-regular fa-id-card"></i>  <a href="#" >Purchased cards</a>
+                      </li>
+                      <!-- <li>
+                        <a href="#">Buy Card</a>
+                      </li> -->
+                  
+                 
+            
+                  <!-- <li id="test-result">
+                    <i class="fa-solid fa-vials"></i><a href="#">Test Results
+
+                    </a>
+                  </li> -->
+              </ul> 
+            </div>
+            <div class="col-12 col-md-9 col-lg-10 main-content">
+              
+                
+        </div>
+           <!-- purchase card form-------------------------- -->
+           <div class="container wrap-table testTb" style="display: noe;" id="testTb" >
+            <div class="resolve-complaint">
+              <span  class="h4">
+             Medical Test Results
+              </span>
+              <input type="text" id="customSearchBox" class="form-control custom-search-input" placeholder="Search...">
+          </div>
+             
+            <table  >
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Pulse Rate</th>
+                  <th>BP Rate</th>
+                  <th>HIV Test</th>
+                  <th>AIDS Test</th>
+                  <th>Sugar Level</th>
+                  <th>Fever</th>
+                  <th>Malaria</th>
+                  <th>Pregnancy Test</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (patientTestResult) { %>
+                  <tr>
+                    <td>1</td>
+                    <td><%= patientTestResult.pulseRate %></td>
+                    <td><%= patientTestResult.bloodPressure %></td>
+                    <td><%= patientTestResult.hivStatus %></td>
+                    <td><%= patientTestResult.aidsStatus %></td>
+                    <td><%= patientTestResult.sugarLevel %></td>
+                    <td><%= patientTestResult.feverStatus %></td>
+                    <td><%= patientTestResult.malariaStatus %></td>
+                    <td><%= patientTestResult?patientTestResult.pregnancyStatus:"NAN" %></td>
+                    <td><%= new Date(patientTestResult.currentDate).toLocaleDateString() %></td>
+                  </tr>
+                <% } else { %>
+                  <tr>
+                    <td colspan="10">No data</td>
+                  </tr>
+                <% } %>
+              </tbody>
+              
+            
+              </table>
+  
+            </div>
+           <!-- purchase card form-------------------------- -->
+           <div class="container wrap-table cardTb  normal-tb" style="display: none;" id="cardTb" >
+            <div class="resolve-complaint">
+              <span  class="h4">
+                 Purchased Cards Records
+              </span>
+              <input type="text" id="customSearchBox" class="form-control custom-search-input" placeholder="Search...">
+          </div>
+             
+            <table >
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Candidate Name</th>
+                  <th>Candidate Email</th>
+                  <th> Card Number</th>
+                  <th> Expiration Date</th>
+                  <th> Purchased Date</th>
+                  <th>Action  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <% if(patientCard){%>
+  
+                
+                  <td>1</td>
+                  <td><%= patientCard.fName %></td>
+                  <td><%= patientCard.email || 'N/A' %></td>
+                  <td><%= patientCard.card_number %></td>
+                  <td><%= new Date(patientCard.expiration_date).toLocaleDateString() %></td>
+                  <td><%= new Date(patientCard.purchase_date).toLocaleDateString() %></td>
+                  <!-- <td><a href="/patients/purchased/card/page?id=<%= patientCard._id %>">View</a></td> -->
+                  <%} else{%>
+                    <td colspan="7"> no data</td>
+  
+  
+  
+                    <% }%>
+                </tr>
+              </tbody>
+              </table>
+  
+            </div>
+          <!-- purchased cards......................... -->
+          <div class="form wrap-form buycard" style="display: none;" id="buycard">
+            <div class="col-md-6  cont">
+                <div class="card mt-5 login form">
+                    <div class="card-header text-center" >
+                        <h3 class="">Patient Purchased Card</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="paymentForm" action="/initialize-payment" method="POST">
+                        
+                            <div class="form-group">
+                              <label for="Full Name">Full Name"</label>
+                                <input type="text" name="fName" id="fName" class="form-control" placeholder="Full Name"   required>
+                            </div>
+                            <input type="hidden" name="patientId" id="patientId" class="form-control" placeholder=""value="<%=patientData._id  %>"  required>
+                            <!-- <div class="form-group">
+
+                                
+                            </div> -->
+                            <div class="form-group">
+                              <label for="Email">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="email"   required>
+                            </div>
+                            <div class="form-group">
+                              <label for="amount">Amount</label>
+                                <input type="number" name="amount" id="email" class="form-control" value="500"   required>
+                            </div>
+                            <div class="form-group">
+                                <!-- <input type="number" name="doc-remark" id="doc-remark" class="form-control" placeholder="Doctor Previous Remark"   required>
+                                <input type="number" name="genotype" id="genotype" class="form-control" placeholder="Genotype"   required>
+                                <input type="number" name="blood_group" id="blood_group" class="form-control" placeholder="Blood Group"   required>
+                                <input type="number" name="illness" id="illness" class="form-control" placeholder="Diagnosed Illness"   required>
+                                <input type="number" name="purchase_date" id="purchase_date" class="form-control" placeholder="Date of purchase"   required>
+                                <input type="number" name="expiration_date" id="Expiration_date" class="form-control" placeholder="Expiration Date"   required> -->
+                            </div>
+                            <div class="btn-cont text-center ">
+                            
+                                <button type="submit" class="btn  btn-block">Purchase Card</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        
+     
+    </div>
+    </div>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="/js/patientDashBord.js"></script>
+    <!-- jQuery library -->
+    <script src="/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+  
+    <script src="/js/userDashBord.js"></script>
+    <script src="/js/labTech.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "100%";
+          document.getElementById("mySidenav").style.height = "40%";
+          document.getElementById("main").classList.add("open"); // Add class to push down
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").classList.remove("open"); // Remove class to return to original position
+        }
+        </script> 
+</body>
+</html>
