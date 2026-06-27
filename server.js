@@ -2,7 +2,7 @@
 const dns=require("node:dns/promises");
 dns.setServers(["8.8.8.8","8.8.4.4"])
 
-
+require("dotenv").config()
 const express=require('express')
 const path=require("path")
 const bodyPaser=require("body-parser")
@@ -22,7 +22,7 @@ app.use("/jquery",express.static(path.join(__dirname, "node_modules/jquery/dist"
 app.use(sessionMildleWare)
 app.use(getRoute)
 app.use(postRoute)
-const PORT=4322||8080
+const PORT=process.env.PORT
 app.listen(`${PORT}`,()=>{
     console.log(`http://localhost:${PORT}`);
 })
