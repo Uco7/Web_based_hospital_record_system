@@ -1,3 +1,8 @@
+
+const dns=require("node:dns/promises");
+dns.setServers(["8.8.8.8","8.8.4.4"])
+
+
 const express=require('express')
 const path=require("path")
 const bodyPaser=require("body-parser")
