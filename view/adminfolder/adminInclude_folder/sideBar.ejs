@@ -1,35 +1,51 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-3 col-lg-2 sidebar admin-sidebar">
-            <!-- including admin sidebar -->
-            <ul class="nav flex-column cont">
-              <li class="active">
-                <a href="/admin/dashbord" aria-current="page">Home</a>
-              </li>
-              <li>
-                <a href="/admin/profile/page">
-                  My Profile
-                </a>
-              </li>
-              <li id="p">
-                <a href="/admin/view/register/patients"> Reg patients</a>
-              </li>
-              <li>
-                <a href="/admin/view/register/staffs">Doctors/Lab Tech
+<aside class="sidebar">
 
-                </a>
-              </li>
-              <li class="appointent">
-                <a href="#">Booked Appointments</a>
-              </li>
-              <li id="">
-                <a href="/admin/view/patients/test/results">patients Records</a>
-              </li>
-              <li id="card">
-                <a href="/admin/view/purchase/card">Purchased Cards</a>
-              </li>
-             
-            </ul>
-            <!-- including admin sidebar -->
+    <div class="sidebar__user">
+        <div class="sidebar__user-avatar">AD</div>
+        <div>
+            <div class="sidebar__user-name">Admin Portal</div>
+            <div class="sidebar__user-role">System Administrator</div>
         </div>
-        
+    </div>
+
+    <nav class="sidebar__nav">
+        <ul>
+            <li>
+                <a href="/admin/dashbord">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="/admin/profile/page">
+                    <i class="fa-solid fa-user-shield"></i> My Profile
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/register/patients">
+                    <i class="fa-solid fa-users"></i> Reg Patients
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/register/staffs">
+                    <i class="fa-solid fa-user-doctor"></i> Doctors / Lab Tech
+                </a>
+            </li>
+            <li>
+                <a href="#" id="appointmentBtn">
+                    <i class="fa-solid fa-calendar-check"></i> Booked Appointments
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/patients/test/results">
+                    <i class="fa-solid fa-file-medical"></i> Patient Records
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/purchase/card">
+                    <i class="fa-solid fa-id-card"></i> Purchased Cards
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</aside>

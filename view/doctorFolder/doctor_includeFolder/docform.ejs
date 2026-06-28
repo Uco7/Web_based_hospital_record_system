@@ -1,34 +1,37 @@
-<div class="container  ">
-    <div class="row justify-content-center">
-        <div class="col-md-6 doc-form "id="doc-form" style="display: none;  margin-top: 1rem;">
-            <div class="card mt-5 login form"  >
-                <div class="card-header">
-                    <h3 class="text-center"> Reg Specilalization</h3>
-                </div>
-                <div class="card-body">
-                    <form action="/doc/reg/specialty" method="post" style="color: darkorange;">
-                        <div class="form-group">
-                       
-                    
-                        </div>
-                        <div class="form-group">
-                            <label for="full_name" id="full_name"> Full Name</label>
-                            <input type="text" name="fullName" id="full_name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="specialty" id="psw">spelcialty</label>
-                            <input type="text" name="specialty" id="specialty" class="form-control" required>
-                        </div>
-                        <div class="btn-cont">
-                            <button type="submit" class="btn btn-primary btn-block" style="background-color: darkorange ; color: white;">Register</button>
-                        </div>
-                    </form>
-                </div>
+<div class="doc-form-panel__header">
+    <div class="doc-form-panel__header-title">
+        <i class="fa-solid fa-stethoscope"></i> Register Medical Specialization
+    </div>
+    <button type="button" class="appointments-panel__close" id="closeFormBtnHeader">
+        <i class="fa-solid fa-xmark"></i> Close
+    </button>
+</div>
+
+<form action="/doc/reg/specialty" method="post">
+    <div class="doc-form-panel__body">
+        <div class="form-section-label">Doctor Credentials</div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" name="fullName" id="fullName" required placeholder="e.g. Dr. Jane Doe">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" required placeholder="name@hospital.com">
             </div>
         </div>
+
+        <div class="form-group" style="margin-top: 0.875rem;">
+            <label for="specialty">Medical Specialty</label>
+            <input type="text" name="specialty" id="specialty" required placeholder="e.g. Cardiology, Pediatrics">
+        </div>
     </div>
-</div>
+
+    <div class="form-footer">
+        <button type="button" class="btn-secondary" id="closeFormBtn">Cancel</button>
+        <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-check"></i> Register Specialty
+        </button>
+    </div>
+</form>

@@ -1,29 +1,36 @@
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-12 col-md-3 col-lg-2 sidebar">
-          <div id="user">
-              
-          </div>
-          <!-- including sidebar -->
-          <ul class="nav flex-column cont" style="color: black;">
-            <li class="active">
-              <a href="/labTechs/dashbord" aria-current="page">Home</a>
-            </li>
-            <li>
-              <a href="/labTechs/profile/page">
-                My Profile
-              </a>
-            </li>
-            <li class="appointment">
-              <a href="#">Booked Appointment</a>
-            </li>
-            <li>
-              <a href="/labTechs/patients/test/result/records/page"> Test Results Data
-        
-              </a>
-            </li>
-            <li>
-              <a href="/patients/card/recod">patients Records</a>
-            </li>
-        </ul> 
-      </div>
+<!--
+  Opens <div class="dashboard-shell"> and <main class="dashboard-content">.
+  Any page that includes this partial MUST close both tags
+  ( </main></div> ) after its own page content.
+-->
+<div class="dashboard-shell">
+    <aside class="sidebar">
+        <div class="sidebar__brand">
+            <img src="/image/ucogo.png" alt="HealthCare logo">
+            <span>Health<strong>Care</strong></span>
+        </div>
+
+        <nav class="sidebar__nav">
+            <ul>
+                <li class="active">
+                    <a href="/labTechs/dashbord"><i class="fa-solid fa-house"></i><span>Home</span></a>
+                </li>
+                <li>
+                    <a href="/labTechs/profile/page"><i class="fa-solid fa-user"></i><span>My Profile</span></a>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleAppointmentsPanel(); return false;">
+                        <i class="fa-solid fa-calendar-check"></i><span>Booked Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/labTechs/patients/test/result/records/page"><i class="fa-solid fa-flask"></i><span>Test Results Data</span></a>
+                </li>
+                <li>
+                    <a href="/patients/card/recod"><i class="fa-solid fa-id-card"></i><span>Patients Records</span></a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="dashboard-content">

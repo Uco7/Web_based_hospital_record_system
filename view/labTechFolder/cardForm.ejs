@@ -1,213 +1,201 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/login.css">
-    <link rel="stylesheet" href="/css/staff.css">
-    
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="dashbord.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTech — Patient Card Records</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/labTech.css">
 </head>
 <body>
-  <div class="nav-sm">
 
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="menu-icon">&#9776; </span>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <h1 style="padding: 10px; font-size: larger;">Health <span id="care" style="color: rgb(0, 200, 255); margin-left: 2rem;"> Care</span></h1>
-
-        <ul class="justify-content-center li-center ">
-            <li class="nav-item"> <a href="#">Home</a>  </li>
-            <li class="nav-item"> <a href="#">My Profile</a>  </li>
-            <li class="nav-item"> <a href="#">Purchase Cards</a>  </li>
-            <li class="nav-item"> <a href="#">Subscribe</a>  </li>
-            <li class="nav-item"> <a href="#">More</a>  </li>
-            <li class="nav-item"> <a href="#">Pages</a>  </li> 
-         
- </ul>
+  <!-- ── Topbar ───────────────────────────────────────────── -->
+  <header class="topbar">
+    <button class="topbar__menu-btn" id="menuBtn" aria-label="Open navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <a href="#" class="topbar__brand">
+      Health<span>&nbsp;Care</span>
+    </a>
+    <div class="topbar__actions">
+      <div class="topbar__badge" title="Notifications">
+        <i class="fa-regular fa-bell"></i>
+        <span class="dot"></span>
       </div>
-</div>
-
-  <nav class="navbar navbar-expand-lg "  >
-      <div class="container">
-          <h1 style="padding: 10px; font-size: larger;">Health <span id="care"> Care</span></h1>
-          <ul class="justify-content-center li-center ">
-              
-
-          </ul>
-        <img src="logo" alt="logo"> 
-          <ul class="nav justify-content-end">
-           
-              <li class="nav-item" id="log-out">
-                  <a href="">Log Out</a>
-              </li>
-          </ul>
-      </div>
-  </nav> 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card mt-5 login form" style="width: 60vw; margin-left: -5rem;" >
-                    <div class="card-header">
-                        <h3 class="text-center">Login Form</h3>
-                    </div>
-                    <div class="card-body">
-                      <form id="testResultForm">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="fName">Full Name</label>
-                              <input type="text" name="fName" id="fName" class="form-control" placeholder="Full Name" value="<%= cardData.patient.fName %>" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="phone_no">Phone Number</label>
-                              <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="Phone Number" value="<%= cardData.patient.phone_no %>" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="phone_no">Patient Email</label>
-                              <input type="email" name="patient_email" id="patient_email" class="form-control" placeholder="patient email" value="<%= cardData.patient.email %>" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="address">Address</label>
-                              <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<%= cardData.patient.address %>" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="docRemark">Doctor's Remark</label>
-                              <input type="text" name="docRemark" id="docRemark" class="form-control" placeholder="Doctor's Remark">
-                            </div>
-                            <div class="form-group">
-                              <label for="genotype">Genotype</label>
-                              <select name="blood_group" id="blood_group" class="form-control" required>
-                                <option value="" disabled selected>Select Blood Group</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                              </select>                                </div>
-                            <div class="form-group">
-                              <label for="blood_group">Blood Group</label>
-                              <select name="genotype" id="genotype" class="form-control" required>
-                                <option value="" disabled selected>Select Genotype</option>
-                                <option value="AA">AA</option>
-                                <option value="AS">AS</option>
-                                <option value="SS">SS</option>
-                                <option value="AC">AC</option>
-                                <option value="SC">SC</option>
-                              </select>                                </div>
-                              <div class="form-group">
-                                <label for="illness">Illness</label>
-                                <input type="text" name="illness" id="illness" class="form-control" placeholder="Illness">
-                              </div>
-                              <div class="form-group">
-                                <label for="doc_name">Assign Doctor</label>
-                                <input type="text" name="doc_name" id="doc_name" class="form-control" placeholder="Assigned Doctor">
-                              </div>
-                             
-                              <!-- <div class="form-group">
-                                <label for="illness">Illness</label>
-                                <input type="text" name="illness" id="illness" class="form-control" placeholder="Illness">
-                              </div> -->
-                            </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="illness">Doctor Email</label>
-                              <input type="text" name="doc_email" id="doc_email" class="form-control" placeholder="Doctor Email">
-                            </div>
-                            <div class="form-group">
-                              <label for="pulseRate">Pulse Rate (0-100)</label>
-                              <input type="number" name="pulseRate" id="pulseRate" class="form-control" placeholder="Pulse Rate" min="0" max="100" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="bloodPressure">Blood Pressure (e.g., 120-80)</label>
-                              <select name="bloodPressure" id="bloodPressure" class="form-control" required>
-                                <option value="">Select Blood Pressure</option>
-                                <option value="Normal">Normal</option>
-                                <option value="Elevated">Elevated</option>
-                                <option value="High">High</option>
-                                <option value="Very High">Very High</option>
-                            </select>                                </div>
-                            <div class="form-group">
-                              <label for="hivStatus">HIV Status</label>
-                              <select name="hivStatus" id="hivStatus" class="form-control" required>
-                                <option value="">Select HIV Status</option>
-                                <option value="Positive">Positive</option>
-                                <option value="Negative">Negative</option>
-                            </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="aidsStatus">AIDS Status</label>
-                              <select name="aidsStatus" id="aidsStatus" class="form-control" required>
-                                <option value="">Select AIDS Status</option>
-                                <option value="Positive">Positive</option>
-                                <option value="Negative">Negative</option>
-                            </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="sugarLevel">Sugar Level (0-200)</label>
-                              <input type="number" name="sugarLevel" id="sugarLevel" class="form-control" placeholder="Sugar Level" min="0" max="200" required>
-                            </div>
-                            <div class="form-group">
-                              <label for="feverStatus">Fever Status</label>
-                              <select name="feverStatus" id="feverStatus" class="form-control" required>
-                                <option value="++">++</option>
-                                <option value="+">+</option>
-                                <option value="normal">Normal</option>
-                                <option value="-">-</option>
-                              </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="pregnancyStatus">Pregnancy Status</label>
-                              <select name="pregnancyStatus" id="pregnancyStatus" class="form-control" >
-                                <option value="">Select Pregnancy Status</option>
-                                <option value="Positive">Positive</option>
-                                <option value="Negative">Negative</option>
-                            </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="malariaStatus">Malaria Status</label>
-                              <select name="malariaStatus" id="malariaStatus" class="form-control" required>
-                                <option value="">Select Malaria Status</option>
-                                <option value="High">High</option>
-                                <option value="Normal">Normal</option>
-                                <option value="Accurate">Accurate</option>
-                                <option value="Negative">Negative</option>
-                            </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="btn-cont text-center">
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="topbar__avatar" title="Lab Tech User">LT</div>
+      <a href="/logout" class="topbar__logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Log out</span>
+      </a>
     </div>
-    <script src="/js/testResult.js"></script>
-    <script src="/js/labTech.js"></script>
-    <script>
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "100%";
-        document.getElementById("mySidenav").style.height = "40%";
-        document.getElementById("main").classList.add("open"); // Add class to push down
-      }
-      
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").classList.remove("open"); // Remove class to return to original position
-      }
-      </script>
+  </header>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- ── Mobile off-canvas nav ────────────────────────────── -->
+  <div class="mobile-sidenav__overlay" id="navOverlay"></div>
+  <nav class="mobile-sidenav" id="mobileNav" aria-label="Mobile navigation">
+    <div class="mobile-sidenav__header">
+      Health<span>&nbsp;Care</span>
+      <button class="mobile-sidenav__close" id="closeNav" aria-label="Close navigation">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <%- include('./labTech_includeFolder/sideBar') %>
+  </nav>
+
+  <div class="dashboard-shell">
+
+    <!-- ── Desktop sidebar ──────────────────────────────────── -->
+    <aside class="sidebar" aria-label="Sidebar navigation">
+      <div class="sidebar__user">
+        <div class="sidebar__user-avatar">LT</div>
+        <div>
+          <div class="sidebar__user-name">Lab Technician</div>
+          <div class="sidebar__user-role">Active session</div>
+        </div>
+      </div>
+      <%- include('./labTech_includeFolder/sideBar') %>
+    </aside>
+
+    <!-- ── Main content ─────────────────────────────────────── -->
+    <main class="dashboard-content">
+
+      <%- include('./labTech_includeFolder/appointment') %>
+
+      <!-- Stat summary -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-card__icon amber"><i class="fa-solid fa-id-card"></i></div>
+          <div class="stat-card__value"><%= cardRecords.length %></div>
+          <div class="stat-card__label">Total Records</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon blue"><i class="fa-solid fa-calendar-day"></i></div>
+          <div class="stat-card__value" id="todayCount">—</div>
+          <div class="stat-card__label">Added Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon green"><i class="fa-solid fa-user-check"></i></div>
+          <div class="stat-card__value" id="uniqueDoctors">—</div>
+          <div class="stat-card__label">Doctors Involved</div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="table-card__header">
+          <div class="table-card__title">
+            <i class="fa-solid fa-folder-open" style="color: var(--color-accent); margin-right: 0.5rem;"></i>
+            Patient Card Records
+          </div>
+          <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="customSearchBox" class="search-input" placeholder="Search records…" aria-label="Search records">
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="recordsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Patient Name</th>
+                <th>Email</th>
+                <th>Doctor</th>
+                <th>Doctor Email</th>
+                <th>Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (cardRecords.length > 0) { %>
+                <% cardRecords.forEach((record, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><strong><%= record.patient_name || 'N/A' %></strong></td>
+                    <td><%= record.patient_email || 'N/A' %></td>
+                    <td><%= record.doc_name || 'N/A' %></td>
+                    <td><%= record.doc_email || 'N/A' %></td>
+                    <td><%= record.currentDate ? new Date(record.currentDate).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }) : 'N/A' %></td>
+                    <td>
+                      <a href="#" class="btn-icon edit" title="Edit record">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="#" class="btn-icon del" title="Delete record" onclick="return confirm('Delete this record?')">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </td>
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="8">
+                    <div class="table-empty">
+                      <i class="fa-regular fa-folder-open"></i>
+                      <p>No patient card records found.</p>
+                    </div>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /table-card -->
+
+    </main>
+  </div><!-- /dashboard-shell -->
+
+  <script src="/js/labTech.js"></script>
+  <script>
+    // Mobile nav
+    const menuBtn   = document.getElementById('menuBtn');
+    const closeNav  = document.getElementById('closeNav');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay   = document.getElementById('navOverlay');
+
+    function openNav() {
+      mobileNav.classList.add('is-open');
+      overlay.classList.add('is-visible');
+      document.body.classList.add('nav-open');
+    }
+    function closeNavFn() {
+      mobileNav.classList.remove('is-open');
+      overlay.classList.remove('is-visible');
+      document.body.classList.remove('nav-open');
+    }
+    menuBtn.addEventListener('click', openNav);
+    closeNav.addEventListener('click', closeNavFn);
+    overlay.addEventListener('click', closeNavFn);
+
+    // Live search
+    document.getElementById('customSearchBox').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('#recordsTable tbody tr').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+
+    // Stat counters
+    const today = new Date().toDateString();
+    const rows = document.querySelectorAll('#recordsTable tbody tr');
+    let todayCount = 0;
+    const doctors = new Set();
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      if (cells.length > 5) {
+        const dateText = cells[5].textContent.trim();
+        if (dateText !== 'N/A' && new Date(dateText).toDateString() === today) todayCount++;
+        const doc = cells[3].textContent.trim();
+        if (doc && doc !== 'N/A') doctors.add(doc);
+      }
+    });
+    document.getElementById('todayCount').textContent = todayCount;
+    document.getElementById('uniqueDoctors').textContent = doctors.size;
+  </script>
 </body>
 </html>
-

@@ -1,6 +1,5 @@
 /* =========================================================
-   TOKENS (mirrors css/style.css — kept local so this page
-   works standalone even if style.css isn't loaded)
+   TOKENS (mirrors css/style.css and css/login.css)
    ========================================================= */
 :root {
   --accent: #ff8c00;
@@ -13,6 +12,8 @@
   --line: #e4e9e6;
   --surface: #f6f9f8;
   --white: #ffffff;
+  --danger: #d33f3f;
+  --danger-soft: rgba(211, 63, 63, 0.08);
 
   --font-heading: 'Poppins', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
@@ -115,10 +116,39 @@ a {
 }
 
 /* =========================================================
-   FORM
+   FORM STRUCTURE
    ========================================================= */
+.form-section {
+  border: none;
+  padding: 0;
+  margin: 0 0 28px;
+}
+
+.form-section legend {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  width: 100%;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
+}
+
+.form-section .form-group:last-child {
+  margin-bottom: 0;
 }
 
 .form-group label {
@@ -131,6 +161,15 @@ a {
   margin-bottom: 6px;
 }
 
+.field-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
 .form-control,
 .form-select {
   width: 100%;
@@ -152,6 +191,14 @@ a {
   border-color: var(--teal);
   box-shadow: 0 0 0 3px var(--teal-soft);
   outline: none;
+}
+
+.form-control:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--danger);
+}
+
+input[type='file'].form-control {
+  padding: 9px 14px;
 }
 
 .password-wrap {
@@ -185,26 +232,24 @@ a {
   background: var(--teal-soft);
 }
 
-.form-utility {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8px;
+.error-message {
+  color: var(--danger);
+  background: var(--danger-soft);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 8px 0 0;
 }
 
-.forgot-link {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--teal-dark);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s var(--ease);
+.hidden {
+  display: none;
 }
 
-.forgot-link:hover {
-  border-color: var(--teal-dark);
-}
-
-.btn-login {
+/* =========================================================
+   SUBMIT / FOOTER
+   ========================================================= */
+.btn-register {
   width: 100%;
   background: var(--accent);
   color: var(--white);
@@ -215,4 +260,51 @@ a {
   border: none;
   border-radius: 8px;
   margin-top: 6px;
-  cursor:
+  cursor: pointer;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.btn-register:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-register:active {
+  transform: translateY(0);
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 20px 0 0;
+}
+
+.auth-switch a {
+  color: var(--teal-dark);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease);
+}
+
+.auth-switch a:hover {
+  border-color: var(--teal-dark);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 575.98px) {
+  .auth-page {
+    padding: 24px 0;
+  }
+  .auth-card-body {
+    padding: 22px 18px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

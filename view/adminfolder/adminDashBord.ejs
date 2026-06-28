@@ -1,127 +1,274 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hospital Admin Dashboard</title>
-  <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
-  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/admindashbord.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hospital Admin Dashboard</title>
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Patients</title>
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/admindashbord.css">
 </head>
 <body>
 
-  <%- include('./adminInclude_folder/navBar') %> <!-- Admin NavBar -->
-  <%- include('./adminInclude_folder/sideBar') %> <!-- Admin Sidebar -->
-<div class="container">
-  <h2></h2>
-</div>
+    <%- include('./adminInclude_folder/navBar') %>
 
-<div class="container box-cont">
-  <div class="boxes">
-      <div class="box box1">
-          <div class="num" id="num1">5</div>
-          <div class="box-txt" id="box-txt1">Booked Appointment</div>
-      </div>
-     
-      <div class="box box1">
-              <div class="text"></div>
-          <div class="num" id="num1"><%=regPatients?regPatients.length:"0" %></div>
-          <div class="box-txt" id="box-txt1">Registered Patients</div>
-      </div>
-      <div class="box box2">
-          <div class="num" id="num2"><%= regStaff? regStaff.length:"0" %> </div>
-          <div class="box-txt" id="box-txt2">Medical Staffs</div>
-      </div>
-     
-  </div>
-</div>
-<%- include('./adminInclude_folder/appointent') %>
-       <div class="wrap-all all-tb" >
-       <div class="container  admin-tb1" style="height: 50vh;">
-        <div class="wrap-txt text-center">
-          <h2 class="text-center" style="color: #b8860B;">Doctors Records</h2>
-        </div>
-      <table class="table">
-          <tr>
-            <th>S/N</th>
-            <th>Candidate Name</th>
-            <th>Diagnosed Illness</th>
-            <th>Assigned Doctor</th>
-            <th>Treatment Date</th>
-            <th>Take Action</th>
-          </tr>
-        </thead>
-        <tbody id="doctorTableBody">
-          <% if (assignedPatients && assignedPatients.length > 0) { %>
-            <% assignedPatients.forEach((result, index) => { %>
-              <tr>
-                <td><%= index + 1 %></td>
-                <td><%= result.fName %></td>
-                <td><%= result.illness %></td>
-                <td><%= result.doc_name %></td>
-                <td><%= new Date(result.currentDate).toLocaleDateString() %></td>
-                <td> <a href="#"></a></td>
-              </tr>
-            <% }) %>
-          <% } else { %>
-            <tr>
-              <td colspan="5" class="text-center">No records found</td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
+    <div class="dashboard-shell">
+
+        <%- include('./adminInclude_folder/sideBar') %>
+
+        <main class="dashboard-content" id="main">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-header__title">Registered Patients</h1>
+                    <div class="page-header__subtitle">All patient accounts registered in the hospital system</div>
+                </div>
+                <div class="search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="customSearchBox" class="search-input" placeholder="Search patients...">
+                </div>
+            </div>
+
+            <!-- Appointments Panel -->
+            <div class="appointments-panel" id="appointmentsPanel">
+                <%- include('./adminInclude_folder/appointent') %>
+            </div>
+
+            <div class="table-card regp-tb">
+                <div class="table-card__header">
+                    <div class="table-card__title">
+                        <i class="fa-solid fa-users" style="color: var(--color-accent);"></i>
+                        Patient Registry
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Role</th>
+                                <th>Date of Birth</th>
+                                <th>LGA</th>
+                                <th>Gender</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (regPatients && regPatients.length > 0) { %>
+                                <% regPatients.forEach((patient, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><strong><%= patient.fName %></strong></td>
+                                        <td><%= patient.email %></td>
+                                        <td><%= patient.phone_no %></td>
+                                        <td><%= patient.address %></td>
+                                        <td><span class="badge badge--neutral"><%= patient.role %></span></td>
+                                        <td><%= new Date(patient.date_of_birth).toLocaleDateString() %></td>
+                                        <td><%= patient.LGA %></td>
+                                        <td><%= patient.gender %></td>
+                                        <td>
+                                            <a href="/admin/reg/patient/page?id=<%= patient._id %>" class="btn-action btn-action--edit">
+                                                <i class="fa-solid fa-pen"></i> Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn-action btn-action--delete deletePatientBtn" data-id="<%= patient._id %>">
+                                                <i class="fa-solid fa-trash"></i> Del
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="11">
+                                        <div class="table-empty">
+                                            <i class="fa-solid fa-users"></i>
+                                            <p>No registered patients found.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
     </div>
 
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="/js/deleteRecord.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <div class="container  admin-tb2" style="height: 50vh;">
-      <div class="wrap-txt text-center">
-        <h2 class="text-center" style="color:#b8860B;">Lab Technician Records </h2>
-      </div>
-    <table class="table">
-            <thead>
-          <tr>
-            <th>S/N</th>
-            <th>Candidate Name</th>
-            <th>Diagnosed Illness</th>
-            <th>Assigned Doctor</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody id="labTechTableBody">
-          <% if (patientRecords &&patientRecords.length > 0) { %>
-            <%       patientRecords.forEach((result, index) => { %>
-              <tr>
-                <td><%= index + 1 %></td>
-                <td><%= result.fName %></td>
-                <td><%= result.illness %></td>
-                <td><%= result.doc_name %></td>
-                <td><%= new Date(result.currentDate).toLocaleDateString() %></td>
-              </tr>
-            <% }) %>
-          <% } else { %>
-            <tr>
-              <td colspan="5" class="text-center">No records found</td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
+</body>
+</html>
+</head>
+<body>
+
+    <%- include('./adminInclude_folder/navBar') %>
+
+    <div class="dashboard-shell">
+
+        <%- include('./adminInclude_folder/sideBar') %>
+
+        <main class="dashboard-content" id="main">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-header__title">Admin Dashboard</h1>
+                    <div class="page-header__subtitle">Hospital system overview and operational metrics</div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card__icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value">5</div>
+                        <div class="stat-card__label">Booked Appointments</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card__icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value"><%= regPatients ? regPatients.length : "0" %></div>
+                        <div class="stat-card__label">Registered Patients</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card__icon">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <div class="stat-card__body">
+                        <div class="stat-card__value"><%= regStaff ? regStaff.length : "0" %></div>
+                        <div class="stat-card__label">Medical Staff</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Panel — JS controls display -->
+            <div class="appointments-panel" id="appointmentsPanel">
+                <%- include('./adminInclude_folder/appointent') %>
+            </div>
+
+            <!-- Two-column tables -->
+            <div class="tables-grid" id="mainTablesGrid">
+
+                <div class="table-card">
+                    <div class="table-card__header">
+                        <div class="table-card__title">
+                            <i class="fa-solid fa-stethoscope" style="color: var(--color-accent);"></i>
+                            Doctors Records
+                        </div>
+                    </div>
+                    <div class="table-scroll">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Patient Name</th>
+                                    <th>Illness</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (assignedPatients && assignedPatients.length > 0) { %>
+                                    <% assignedPatients.forEach((result, index) => { %>
+                                        <tr>
+                                            <td><%= index + 1 %></td>
+                                            <td><strong><%= result.fName %></strong></td>
+                                            <td><%= result.illness %></td>
+                                            <td><span class="badge badge--gold"><%= result.doc_name %></span></td>
+                                            <td><%= new Date(result.currentDate).toLocaleDateString() %></td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="table-empty">
+                                                <i class="fa-solid fa-stethoscope"></i>
+                                                <p>No doctor records found.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-card__header">
+                        <div class="table-card__title">
+                            <i class="fa-solid fa-flask" style="color: var(--color-accent);"></i>
+                            Lab Technician Records
+                        </div>
+                    </div>
+                    <div class="table-scroll">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Patient Name</th>
+                                    <th>Illness</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (patientRecords && patientRecords.length > 0) { %>
+                                    <% patientRecords.forEach((result, index) => { %>
+                                        <tr>
+                                            <td><%= index + 1 %></td>
+                                            <td><strong><%= result.fName %></strong></td>
+                                            <td><%= result.illness %></td>
+                                            <td><span class="badge badge--gold"><%= result.doc_name %></span></td>
+                                            <td><%= new Date(result.currentDate).toLocaleDateString() %></td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="table-empty">
+                                                <i class="fa-solid fa-flask"></i>
+                                                <p>No lab records found.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
     </div>
-    </div>
-  </div>
-  </div>
-  <script>
-    
-  </script>
-  <script src="/jquery/jquery.min.js"></script>
-             
-             
-              <script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
- 
-  <script src="/js/admin.js"></script>
-  
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

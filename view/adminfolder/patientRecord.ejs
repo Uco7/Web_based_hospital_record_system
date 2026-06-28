@@ -1,122 +1,121 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin  Dashboard</title>
-     <link rel="stylesheet" href="/css/staff.css">
-  
-    
-          <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
-          <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-          
-          
-          </head>
-          
-          <body>
-       
-              
-    
-            <%- include('./adminInclude_folder/navBar') %> <!-- Admin NavBar -->
-  <%- include('./adminInclude_folder/sideBar') %> <!-- Admin Sidebar -->
-          
-   
-  <%- include('./adminInclude_folder/appointent') %>
+    <title>Patient Cards Records</title>
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/admindashbord.css">
+</head>
+<body>
 
-     
-        <div class="container wrap-table  prec-tb">
-          <div class="resolve-complaint">
-            <span  class="h4">
-              Patients Cards Records
-            </span>
-            <input type="text" id="customSearchBox" class="form-control custom-search-input" placeholder="Search...">
-        </div>
-           
-          <table  >
-            <thead>
-              <tr>
-                <th>S/N</th>
-                <th>Candidate Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Illness</th>
-                <th>Genotype</th>
-                <th>Blood Group</th>
-                <th>HIV Status</th>
-                <th>AIDS Status</th>
-                <th>Sugar Level</th>
-                <th>Fever Status</th>
-                <th>Pregnancy Status</th>
-                <th>Malaria Status</th>
-                <th>Doctor's Remark</th>
-                <th style="border: 1px solid;">Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if (patientRecords && patientRecords.length > 0) { %>
-                <% patientRecords.forEach((record, index) => { %>
-                  <tr>
-                    <td><%= index + 1 %></td>
-                    <td><%= record.fName %></td>
-                    <td><%= record.patient_email %></td>
-                    <td><%= record.phone_no %></td>
-                    <td><%= record.address %></td>
-                    <td><%= record.illness %></td>
-                    <td><%= record.genotype %></td>
-                    <td><%= record.blood_group %></td>
-                    <td><%= record.hivStatus %></td>
-                    <td><%= record.aidsStatus %></td>
-                    <td><%= record.sugarLevel %></td>
-                    <td><%= record.feverStatus %></td>
-                    <td><%= record.pregnancyStatus %></td>
-                    <td><%= record.malariaStatus %></td>
-                    <td style="border: 1px solid;"><%= record.docRemark || 'No Remark' %></td>
-                    <td><a href="/admin/test/result/page?id=<%= record._id %>"><i class="fa-solid fa-pen" style="color: darkorange; font-size: x-large;" >update</i></a></td>
-                    <td><a href="#" class="deleteTestBtn" data-id="<%= record._id %>"><i class="fa-solid fa-trash" style="color: red; font-size: x-large;" ></i> delete</a></td>
-                  </tr>
-                <% }) %>
-              <% } else { %>
-                <tr>
-                  <td colspan="16" class="text-center">No records found</td>
-                </tr>
-              <% } %>
-            </tbody>
-            </table>
+    <%- include('./adminInclude_folder/navBar') %>
 
-          </div>
+    <div class="dashboard-shell">
+
+        <%- include('./adminInclude_folder/sideBar') %>
+
+        <main class="dashboard-content" id="main">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-header__title">Patient Cards Records</h1>
+                    <div class="page-header__subtitle">Full medical test results and clinical data for all patients</div>
+                </div>
+                <div class="search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="customSearchBox" class="search-input" placeholder="Search records...">
+                </div>
+            </div>
+
+            <!-- Appointments Panel -->
+            <div class="appointments-panel" id="appointmentsPanel">
+                <%- include('./adminInclude_folder/appointent') %>
+            </div>
+
+            <div class="table-card prec-tb">
+                <div class="table-card__header">
+                    <div class="table-card__title">
+                        <i class="fa-solid fa-file-medical" style="color: var(--color-accent);"></i>
+                        Patient Medical Records
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Illness</th>
+                                <th>Genotype</th>
+                                <th>Blood Group</th>
+                                <th>HIV</th>
+                                <th>AIDS</th>
+                                <th>Sugar</th>
+                                <th>Fever</th>
+                                <th>Pregnancy</th>
+                                <th>Malaria</th>
+                                <th>Remark</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (patientRecords && patientRecords.length > 0) { %>
+                                <% patientRecords.forEach((record, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><strong><%= record.fName %></strong></td>
+                                        <td><%= record.patient_email %></td>
+                                        <td><%= record.phone_no %></td>
+                                        <td><%= record.address %></td>
+                                        <td><%= record.illness %></td>
+                                        <td><span class="badge badge--neutral"><%= record.genotype %></span></td>
+                                        <td><span class="badge badge--gold"><%= record.blood_group %></span></td>
+                                        <td><span class="badge <%= record.hivStatus === 'Positive' ? 'badge--negative' : 'badge--positive' %>"><%= record.hivStatus %></span></td>
+                                        <td><span class="badge <%= record.aidsStatus === 'Positive' ? 'badge--negative' : 'badge--positive' %>"><%= record.aidsStatus %></span></td>
+                                        <td><%= record.sugarLevel %></td>
+                                        <td><%= record.feverStatus %></td>
+                                        <td><%= record.pregnancyStatus %></td>
+                                        <td><%= record.malariaStatus %></td>
+                                        <td><%= record.docRemark || '—' %></td>
+                                        <td>
+                                            <a href="/admin/test/result/page?id=<%= record._id %>" class="btn-action btn-action--edit">
+                                                <i class="fa-solid fa-pen"></i> Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn-action btn-action--delete deleteTestBtn" data-id="<%= record._id %>">
+                                                <i class="fa-solid fa-trash"></i> Del
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="17">
+                                        <div class="table-empty">
+                                            <i class="fa-solid fa-file-medical"></i>
+                                            <p>No patient records found.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
     </div>
-    </div>
-   
-    <!-- jQuery library -->
+
     <script src="/jquery/jquery.min.js"></script>
-    <!-- Bootstrap JS Bundle (includes Popper) -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
-  
-    <script src="/js/userDashBord.js"></script>
-    <script src="/js/labTech.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script>
-        function openNav() {
-          document.getElementById("mySidenav").style.width = "100%";
-          document.getElementById("mySidenav").style.height = "40%";
-          document.getElementById("main").classList.add("open"); // Add class to push down
-        }
-        
-        function closeNav() {
-          document.getElementById("mySidenav").style.width = "0";
-          document.getElementById("main").classList.remove("open"); // Remove class to return to original position
-        }
-        </script> 
-<script src="/jquery/jquery.min.js"></script>
-<script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
-<script src="/js/admin.js"></script>
-<script src="/js/deleteRecord.js"></script>
-
+    <script src="/js/admin.js"></script>
+    <script src="/js/deleteRecord.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
-
