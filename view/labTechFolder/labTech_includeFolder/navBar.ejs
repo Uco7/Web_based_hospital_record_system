@@ -1,0 +1,68 @@
+<header class="topbar">
+    <button type="button" class="topbar__menu-btn" onclick="openNav()" aria-label="Open menu" aria-controls="mobileSidenav" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a href="/labTechs/dashbord" class="topbar__brand">
+        <img src="/image/ucogo.png" alt="HealthCare logo">
+        <span>Health<strong>Care</strong></span>
+    </a>
+
+    <div class="topbar__actions">
+        <div class="topbar__avatar">
+            <i class="fa-solid fa-circle-user"></i>
+        </div>
+        <a class="topbar__logout" href="/logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Log out</span>
+        </a>
+    </div>
+</header>
+
+<!-- Mobile off-canvas menu, shown below the lg breakpoint. Mirrors sideBar.ejs. -->
+<div class="mobile-sidenav" id="mobileSidenav" aria-hidden="true">
+    <div class="mobile-sidenav__header">
+        <span>Dashboard</span>
+        <button type="button" class="mobile-sidenav__close" onclick="closeNav()" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <nav>
+        <ul>
+            <li class="active">
+                <a href="/labTechs/dashbord"><i class="fa-solid fa-house"></i><span>Home</span></a>
+            </li>
+            <li>
+                <a href="/labTechs/profile/page"><i class="fa-solid fa-user"></i><span>My Profile</span></a>
+            </li>
+            <li>
+                <a href="#" onclick="toggleAppointmentsPanel(); closeNav(); return false;">
+                    <i class="fa-solid fa-calendar-check"></i><span>Booked Appointment</span>
+                </a>
+            </li>
+            <li>
+                <a href="/labTechs/patients/test/result/records/page"><i class="fa-solid fa-flask"></i><span>Test Results Data</span></a>
+            </li>
+            <li>
+                <a href="/patients/card/recod"><i class="fa-solid fa-id-card"></i><span>Patients Records</span></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="mobile-sidenav__overlay" id="mobileSidenavOverlay" onclick="closeNav()"></div>
+
+<script>
+    // Kept as global functions (not addEventListener) because other pages
+    // call these by name directly from inline onclick attributes.
+    function openNav() {
+        document.getElementById('mobileSidenav').classList.add('is-open');
+        document.getElementById('mobileSidenavOverlay').classList.add('is-visible');
+        document.body.classList.add('nav-open');
+    }
+
+    function closeNav() {
+        document.getElementById('mobileSidenav').classList.remove('is-open');
+        document.getElementById('mobileSidenavOverlay').classList.remove('is-visible');
+        document.body.classList.remove('nav-open');
+    }
+</script>

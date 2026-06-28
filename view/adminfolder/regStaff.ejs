@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Staff</title>
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/admindashbord.css">
+</head>
+<body>
+
+    <%- include('./adminInclude_folder/navBar') %>
+
+    <div class="dashboard-shell">
+
+        <%- include('./adminInclude_folder/sideBar') %>
+
+        <main class="dashboard-content" id="main">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-header__title">Registered Staff</h1>
+                    <div class="page-header__subtitle">Doctors, lab technicians and all medical staff accounts</div>
+                </div>
+                <div class="search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="customSearchBox" class="search-input" placeholder="Search staff...">
+                </div>
+            </div>
+
+            <!-- Appointments Panel -->
+            <div class="appointments-panel" id="appointmentsPanel">
+                <%- include('./adminInclude_folder/appointent') %>
+            </div>
+
+            <div class="table-card regs-tb">
+                <div class="table-card__header">
+                    <div class="table-card__title">
+                        <i class="fa-solid fa-user-doctor" style="color: var(--color-accent);"></i>
+                        Staff Registry
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Role</th>
+                                <th>Date of Birth</th>
+                                <th>LGA</th>
+                                <th>Gender</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (regStaff && regStaff.length > 0) { %>
+                                <% regStaff.forEach((staff, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><strong><%= staff.fName %></strong></td>
+                                        <td><%= staff.email %></td>
+                                        <td><%= staff.phone_no %></td>
+                                        <td><%= staff.address %></td>
+                                        <td><span class="badge badge--gold"><%= staff.role %></span></td>
+                                        <td><%= new Date(staff.date_of_birth).toLocaleDateString() %></td>
+                                        <td><%= staff.LGA %></td>
+                                        <td><%= staff.gender %></td>
+                                        <td>
+                                            <a href="/admin/reg/staff/page?id=<%= staff._id %>" class="btn-action btn-action--edit">
+                                                <i class="fa-solid fa-pen"></i> Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn-action btn-action--delete deleteStaffBtn" data-id="<%= staff._id %>">
+                                                <i class="fa-solid fa-trash"></i> Del
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="11">
+                                        <div class="table-empty">
+                                            <i class="fa-solid fa-user-doctor"></i>
+                                            <p>No registered staff found.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="/js/deleteRecord.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

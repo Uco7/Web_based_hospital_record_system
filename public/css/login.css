@@ -1,0 +1,218 @@
+/* =========================================================
+   TOKENS (mirrors css/style.css — kept local so this page
+   works standalone even if style.css isn't loaded)
+   ========================================================= */
+:root {
+  --accent: #ff8c00;
+  --accent-dark: #e07b00;
+  --teal: #06c98f;
+  --teal-dark: #04a877;
+  --teal-soft: rgba(6, 201, 143, 0.12);
+  --ink: #16201c;
+  --muted: #5b6864;
+  --line: #e4e9e6;
+  --surface: #f6f9f8;
+  --white: #ffffff;
+
+  --font-heading: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  --radius: 10px;
+  --shadow-sm: 0 2px 8px rgba(22, 32, 28, 0.06);
+  --shadow-md: 0 10px 30px -10px rgba(22, 32, 28, 0.18);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal-dark);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   PAGE SHELL
+   ========================================================= */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    160deg,
+    var(--teal-soft) 0%,
+    rgba(255, 140, 0, 0.06) 100%
+  );
+  padding: clamp(32px, 6vw, 72px) 0;
+}
+
+.auth-brand {
+  display: block;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+
+.auth-brand .care {
+  color: var(--accent);
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+.auth-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.auth-card-header {
+  background: var(--teal);
+  color: var(--white);
+  padding: clamp(24px, 4vw, 32px) clamp(24px, 4vw, 32px) clamp(20px, 3vw, 26px);
+  text-align: center;
+}
+
+.auth-card-header h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0 0 6px;
+}
+
+.auth-card-header p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.auth-card-body {
+  padding: clamp(24px, 4vw, 32px);
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.form-control::placeholder {
+  color: var(--muted);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-soft);
+  outline: none;
+}
+
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap .form-control {
+  padding-right: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.password-toggle:hover {
+  color: var(--teal-dark);
+  background: var(--teal-soft);
+}
+
+.form-utility {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.forgot-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--teal-dark);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease);
+}
+
+.forgot-link:hover {
+  border-color: var(--teal-dark);
+}
+
+.btn-login {
+  width: 100%;
+  background: var(--accent);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 6px;
+  cursor:

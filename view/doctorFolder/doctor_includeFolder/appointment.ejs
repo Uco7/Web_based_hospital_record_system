@@ -1,0 +1,51 @@
+<div class="appointments-panel__header">
+    <div class="appointments-panel__title">
+        <i class="fa-solid fa-calendar-check" style="color: var(--color-accent);"></i>
+        Booked Appointment Schedule
+    </div>
+    <button type="button" class="appointments-panel__close" id="closeAppointmentsBtn">
+        <i class="fa-solid fa-xmark"></i> Close
+    </button>
+</div>
+
+<div class="table-scroll">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Patient Name</th>
+                <th>Email Address</th>
+                <th>Location</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (locals.appointment && appointment.length > 0) { %>
+                <% appointment.forEach((data, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><strong><%= data.name %></strong></td>
+                        <td><a href="mailto:<%= data.email %>" class="table-link"><%= data.email %></a></td>
+                        <td><%= data.address || 'N/A' %></td>
+                        <td><span class="badge badge--neutral"><%= data.phone_no %></span></td>
+                        <td>
+                            <a href="/doc/appointment/review/<%= data._id %>" class="btn-action btn-action--review">
+                                <i class="fa-solid fa-file-medical"></i> Review
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="6">
+                        <div class="table-empty">
+                            <i class="fa-solid fa-calendar-minus"></i>
+                            <p>No booked appointments found for this account.</p>
+                        </div>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

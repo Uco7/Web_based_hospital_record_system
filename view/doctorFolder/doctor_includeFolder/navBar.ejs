@@ -1,0 +1,71 @@
+<header class="topbar">
+
+    <button class="topbar__menu-btn" id="mobileMenuToggle" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="topbar__brand">
+        <img src="/image/ucogo.png" alt="HealthCare Logo">
+        <span>Health</span>Care
+    </div>
+
+    <div class="topbar__actions">
+        <div class="topbar__badge" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <div class="dot"></div>
+        </div>
+        <div class="topbar__avatar">DR</div>
+        <a href="/logout" class="topbar__logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</header>
+
+<!-- Mobile Overlay -->
+<div class="mobile-sidenav-overlay" id="sidebarOverlay"></div>
+
+<!-- Mobile Sidebar -->
+<aside class="mobile-sidenav" id="mobileSidenav">
+
+    <div class="mobile-sidenav__header">
+        <div class="mobile-sidenav__brand">
+            <span>Health</span>Care
+        </div>
+        <button class="mobile-sidenav__close" id="mobileMenuClose" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/doctors/dashbord">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="/doctor/profile/page">
+                    <i class="fa-solid fa-user-doctor"></i> My Profile
+                </a>
+            </li>
+            <li>
+                <a href="/doctors/treated/patient">
+                    <i class="fa-solid fa-bed-pulse"></i> Treated Patients
+                </a>
+            </li>
+            <li>
+                <a href="#" id="appointmentBtnMobile">
+                    <i class="fa-solid fa-calendar-check"></i> Booked Appointments
+                </a>
+            </li>
+            <li>
+                <a href="#" id="doctorFormBtnMobile">
+                    <i class="fa-solid fa-stethoscope"></i> Reg Specialization
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</aside>

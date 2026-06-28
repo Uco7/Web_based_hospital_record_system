@@ -1,0 +1,81 @@
+<header class="topbar">
+
+    <button class="topbar__menu-btn" id="mobileMenuToggle" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="topbar__brand">
+        <img src="/image/ucogo.png" alt="HealthCare Logo">
+        <span>Health</span>Care
+    </div>
+
+    <div class="topbar__actions">
+        <div class="topbar__badge" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <div class="dot"></div>
+        </div>
+        <div class="topbar__avatar">AD</div>
+        <a href="/logout" class="topbar__logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</header>
+
+<!-- Mobile Overlay -->
+<div class="mobile-sidenav-overlay" id="sidebarOverlay"></div>
+
+<!-- Mobile Sidebar -->
+<aside class="mobile-sidenav" id="mobileSidenav">
+
+    <div class="mobile-sidenav__header">
+        <div class="mobile-sidenav__brand">
+            <span>Health</span>Care
+        </div>
+        <button class="mobile-sidenav__close" id="mobileMenuClose" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/admin/dashbord">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="/admin/profile/page">
+                    <i class="fa-solid fa-user-shield"></i> My Profile
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/register/patients">
+                    <i class="fa-solid fa-users"></i> Reg Patients
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/register/staffs">
+                    <i class="fa-solid fa-user-doctor"></i> Doctors / Lab Tech
+                </a>
+            </li>
+            <li>
+                <a href="#" id="appointmentBtnMobile">
+                    <i class="fa-solid fa-calendar-check"></i> Booked Appointments
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/patients/test/results">
+                    <i class="fa-solid fa-file-medical"></i> Patient Records
+                </a>
+            </li>
+            <li>
+                <a href="/admin/view/purchase/card">
+                    <i class="fa-solid fa-id-card"></i> Purchased Cards
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</aside>

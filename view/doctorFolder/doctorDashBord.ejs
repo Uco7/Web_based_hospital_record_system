@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard — Patient Cards</title>
+    <link rel="stylesheet" href="/css/doctorDashBord.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <%- include('./doctor_includeFolder/navBar') %>
+
+    <div class="dashboard-shell">
+
+        <%- include('./doctor_includeFolder/sideBar') %>
+
+        <main class="dashboard-content" id="main">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-header__title">Patients Cards Records</h1>
+                    <div class="page-header__subtitle">Access global identity tokens and diagnosis history maps</div>
+                </div>
+                <div class="search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="customSearchBox" class="search-input" placeholder="Search patients...">
+                </div>
+            </div>
+
+            <!-- Appointments Panel — JS controls display -->
+            <div class="appointments-panel" id="appointmentsPanel">
+                <%- include('./doctor_includeFolder/appointment') %>
+            </div>
+
+            <!-- Doctor Form Panel — JS controls display -->
+            <div class="doc-form-panel" id="docFormPanel">
+                <%- include('./doctor_includeFolder/docForm') %>
+            </div>
+
+            <!-- Main Table — hidden when a panel is open -->
+            <div class="table-card treatp-table">
+                <div class="table-card__header">
+                    <div class="table-card__title">
+                        <i class="fa-solid fa-address-card" style="color: var(--color-accent);"></i>
+                        Assigned Medical Profiles
+                    </div>
+                </div>
+
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Patient Name</th>
+                                <th>Diagnosed Illness</th>
+                                <th>Assigned Doctor</th>
+                                <th>Treatment Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(locals.assignedPatients && assignedPatients.length > 0){ %>
+                                <% assignedPatients.forEach((patient, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><strong><%= patient.fName %></strong></td>
+                                        <td><%= patient.illness %></td>
+                                        <td><span class="badge badge--neutral"><%= patient.doc_name %></span></td>
+                                        <td><%= new Date(patient.currentDate).toLocaleDateString() %></td>
+                                    </tr>
+                                <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="table-empty">
+                                            <i class="fa-solid fa-id-card-clip"></i>
+                                            <p>No patient records found.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/doc.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

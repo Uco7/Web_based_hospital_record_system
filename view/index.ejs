@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare — Exceptional Patient Care</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="brand" href="#main">Health<span class="care">Care</span></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars fa-lg"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1">
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#staff">Our Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/registration/page">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login/page">Login</a></li>
+                </ul>
+                <a href="#contact" class="btn-contact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="main">
+        <img class="hero-image-placeholder" src="/image/doc2.jpg" alt="" aria-hidden="true">
+
+        <div class="container hero-inner">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 hero-copy">
+                    <span class="eyebrow"><i class="fa-solid fa-heart-pulse"></i> Trusted care, every day</span>
+                    <h1>Providing an Exceptional Patient Experience</h1>
+                    <p>Welcome to where exceptional care is our top priority — compassionate staff, a
+                        state-of-the-art facility, and a patient-centered approach.</p>
+                    <p>We are dedicated to your well-being. Trust us with your health, and experience the
+                        difference.</p>
+                    <a href="#services" class="btn-cta">
+                        See our services <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800">
+                    <div class="booking-card">
+                        <div class="card-header">
+                            <h3>Book Now</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="appointment">
+                                <input type="text" name="name" id="fName" class="form-control"
+                                    placeholder="First and last name" required>
+                                <input type="email" name="email" id="email" class="form-control"
+                                    placeholder="Email address" required>
+                                <input type="text" name="address" id="address" class="form-control"
+                                    placeholder="Address" required>
+                                <input type="tel" name="phone_no" id="phone_no" class="form-control"
+                                    placeholder="Phone number" required>
+                                <button type="button" class="btn-book" id="bookBtn">Book Appointment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="services-section section-pad" id="services">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 services-heading">
+                    <span class="eyebrow">What we offer</span>
+                    <h3>Our Special Services</h3>
+                    <p>Beyond simply providing medical care, our commitment is to deliver services tailored
+                        to your unique needs.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="600">
+                    <div class="service-card">
+                        <div class="icon"><i class="fa-solid fa-flask-vial"></i></div>
+                        <h4>Laboratory Test</h4>
+                        <p>Accurate diagnostics, swift results.</p>
+                        <p>Experience top-notch laboratory testing in our facility.</p>
+                        <a href="#" class="link-cta">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="icon"><i class="fa-solid fa-notes-medical"></i></div>
+                        <h4>Health Check</h4>
+                        <p>Our thorough assessments and expert evaluations</p>
+                        <p>help you stay confident about your health.</p>
+                        <a href="#" class="link-cta">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="icon"><i class="fa-solid fa-tooth"></i></div>
+                        <h4>General Dentistry</h4>
+                        <p>Experience comprehensive oral care with our dentistry team.</p>
+                        <p>Trust us to keep your smile healthy and bright.</p>
+                        <a href="#" class="link-cta">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== ABOUT US ===================== -->
+    <section class="about-section section-pad" id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
+                    <img class="about-image-placeholder" src="/image/nurslaf.jpg" alt="Member of our nursing staff">
+                </div>
+                <div class="col-lg-6 about-copy">
+                    <span class="eyebrow">About us</span>
+                    <h4 class="mb-3">Care built around you</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== WHY CHOOSE US ===================== -->
+    <section class="choose-section section-pad">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5" data-aos="fade-right" data-aos-duration="700">
+                    <img class="about-image-placeholder" src="/image/choose4.jpg" alt="Our facility">
+                </div>
+
+                <div class="col-lg-7 choose-copy">
+                    <span class="eyebrow">Why choose us</span>
+                    <h4 class="mb-3">A standard of care you can rely on</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                    <div class="choose-item">
+                        <div class="choose-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                        <div>
+                            <h4>Intensive Care</h4>
+                            <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum.</p>
+                        </div>
+                    </div>
+
+                    <div class="choose-item">
+                        <div class="choose-icon"><i class="fa-solid fa-truck-medical"></i></div>
+                        <div>
+                            <h4>Free Ambulance Service</h4>
+                            <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum.</p>
+                        </div>
+                    </div>
+
+                    <div class="choose-item">
+                        <div class="choose-icon"><i class="fa-solid fa-notes-medical"></i></div>
+                        <div>
+                            <h4>Medical &amp; Surgical Care</h4>
+                            <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== STAFF ===================== -->
+    <section class="staff-section section-pad" id="staff">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-7">
+                    <span class="eyebrow">Meet the team</span>
+                    <h3 class="mb-0">Our Doctors</h3>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="600">
+                    <div class="staff-card card">
+                        <img class="staff-image-placeholder" src="/image/docbl.jpeg" alt="Dr. Sir Uc">
+                        <div class="card-body">
+                            <h6>Dr. Sir Uc</h6>
+                            <p class="card-text">Lagos State University</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                    <div class="staff-card card">
+                        <img class="staff-image-placeholder" src="/image/docgl.jpeg" alt="Dr. Emmanuel">
+                        <div class="card-body">
+                            <h6>Dr. Emmanuel</h6>
+                            <p class="card-text">Alex Ekwueme Federal University</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                    <div class="staff-card card">
+                        <img class="staff-image-placeholder" src="/image/doc3.jpg" alt="Dr. Nwambeke">
+                        <div class="card-body">
+                            <h6>Dr. Nwambeke</h6>
+                            <p class="card-text">Ebonyi State University</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SUMMARY / PRE-FOOTER ===================== -->
+    <section class="summary-section section-pad" id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 brand-col">
+                    <h6>Health<span class="care">Care</span></h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6>About Us</h6>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Work With Us</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6>Services</h6>
+                    <ul>
+                        <li><a href="#">Search Terms</a></li>
+                        <li><a href="#">Advanced Search</a></li>
+                        <li><a href="#">Privacy &amp; Policy</a></li>
+                        <li><a href="#">Support Us</a></li>
+                        <li><a href="#">Our Stores</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h6>Contact Us</h6>
+                    <ul>
+                        <li><i class="fa-solid fa-phone"></i><a href="#">+123 Ikwo Street</a></li>
+                        <li><i class="fa-solid fa-envelope"></i><a href="#">support@gmail.com</a></li>
+                        <li><i class="fa-solid fa-headset"></i><a href="#">+123 Customer Care</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>&copy; 2024 HealthCare. All rights reserved.</span>
+            <div class="footer-icons">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="/js/index.js"></script>
+
+</body>
+</html>

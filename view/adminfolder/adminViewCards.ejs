@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchased Medical Cards</title>
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/admindashbord.css">
+</head>
+<body>
+
+    <%- include('./adminInclude_folder/navBar') %>
+
+    <div class="dashboard-shell">
+
+        <%- include('./adminInclude_folder/sideBar') %>
+
+        <main class="dashboard-content" id="main">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="page-header__title">Purchased Medical Cards</h1>
+                    <div class="page-header__subtitle">Patient card purchase history and status records</div>
+                </div>
+                <div class="search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="customSearchBox" class="search-input" placeholder="Search cards...">
+                </div>
+            </div>
+
+            <!-- Appointments Panel -->
+            <div class="appointments-panel" id="appointmentsPanel">
+                <%- include('./adminInclude_folder/appointent') %>
+            </div>
+
+            <div class="table-card card-tb">
+                <div class="table-card__header">
+                    <div class="table-card__title">
+                        <i class="fa-solid fa-id-card" style="color: var(--color-accent);"></i>
+                        Patient Purchased Cards Records
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Amount</th>
+                                <th>Card Number</th>
+                                <th>Purchase Date</th>
+                                <th>Expiration Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (patientCard && patientCard.length > 0) { %>
+                                <% patientCard.forEach((card, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><strong><%= card.fName %></strong></td>
+                                        <td><%= card.email %></td>
+                                        <td><%= card.phone_no %></td>
+                                        <td><span class="badge badge--gold"><%= card.amount %></span></td>
+                                        <td><code style="font-size: 0.8rem; color: var(--color-text-muted);"><%= card.card_number %></code></td>
+                                        <td><%= new Date(card.purchase_date).toLocaleDateString() %></td>
+                                        <td><%= new Date(card.expiration_date).toLocaleDateString() %></td>
+                                        <td>
+                                            <a href="#" class="btn-action btn-action--edit">
+                                                <i class="fa-solid fa-pen"></i> Fill Card
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="9">
+                                        <div class="table-empty">
+                                            <i class="fa-solid fa-id-card"></i>
+                                            <p>No purchased card records found.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

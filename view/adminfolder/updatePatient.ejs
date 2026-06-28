@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabTechnician Profile Page</title>
+    <link rel="stylesheet" href="/css/patientProfile.css">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/56adb67a5b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <img src="/image/ucogo.png" alt="logo" style="width: 50px; height: 50px; border-radius: 50%;">
+            <div class="notification">
+                <a class="nav-link" href="#"><i class="fa-regular fa-bell" style="color:rgb(255, 135, 0);"></i>
+                <div id="red">1</div></a>
+            </div>
+            <ul class="nav justify-content-end">
+                <div class="userimg">
+                    <img src="data:image/jpeg;base64,<%=patient.profileImage %>" alt="Profile Image" style="width: 50px; height: 50px; border-radius: 50px; margin-left: -5rem;">
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link log-out" href="#">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container wrapp" id="complaintSection">
+        <h2 class="" id="bio">Admin Registration Data</h2>
+        <form class="row g-3" enctype="multipart/form-data" id="updateRecords">
+            <div class="container text-center">
+                <img src="data:image/jpeg;base64,<%=patient.profileImage %>" alt="Profile Image" style="width: 200px; height: 200px; border-radius: 10px;">
+            </div>
+            <div class="col-md-6">
+                <label for="fName" class="form-label">First Name</label>
+                <input type="text" id="fName" name="fName" class="form-control" value="<%=patient.fName || 'no data' %>">
+                <input type="hidden" id="patientId" name="patientId" class="form-control" value="<%=patient._id || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="lName" class="form-label">Last Name</label>
+                <input type="text" id="lName" name="lName" class="form-control" value="<%=patient.lName || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="department" class="form-label">Gender</label>
+                <input type="text" id="department" name="gender" class="form-control" value="<%=patient.gender || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" value="<%=patient.email || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="phone_no" class="form-label">Phone Number</label>
+                <input type="number" id="phone_no" name="phone_no" class="form-control" value="<%=patient.phone_no || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="address" class="form-label">Residential Address</label>
+                <input type="text" id="address" name="address" class="form-control" value="<%=patient.address || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="state" class="form-label">State of Origin</label>
+                <input type="text" id="state" name="state" class="form-control" value="<%=patient.state || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="lga" class="form-label">LGA</label>
+                <input type="text" id="lga" name="LGA" class="form-control" value="<%=patient.LGA || 'No data' %>">
+            </div>
+            <div class="col-md-6">
+                <label for="date_of_birth" class="form-label">Date of Birth</label>
+                <input type="text" id="date_of_birth" name="date_of_birth" class="form-control" value="<%=patient.date_of_birth ? new Date(patient.date_of_birth).toLocaleDateString() : 'No data'%>">
+            </div>
+            <div class="col-12">
+                <button id="btn" class="btn btn-success updatePatientBtn" type="button">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="/js/labTech.js"></script>
+    <script src="/js/updateRecord.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTech — Patient Card Records</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/labTech.css">
+</head>
+<body>
+
+  <!-- ── Topbar ───────────────────────────────────────────── -->
+  <header class="topbar">
+    <button class="topbar__menu-btn" id="menuBtn" aria-label="Open navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <a href="#" class="topbar__brand">
+      Health<span>&nbsp;Care</span>
+    </a>
+    <div class="topbar__actions">
+      <div class="topbar__badge" title="Notifications">
+        <i class="fa-regular fa-bell"></i>
+        <span class="dot"></span>
+      </div>
+      <div class="topbar__avatar" title="Lab Tech User">LT</div>
+      <a href="/logout" class="topbar__logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Log out</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ── Mobile off-canvas nav ────────────────────────────── -->
+  <div class="mobile-sidenav__overlay" id="navOverlay"></div>
+  <nav class="mobile-sidenav" id="mobileNav" aria-label="Mobile navigation">
+    <div class="mobile-sidenav__header">
+      Health<span>&nbsp;Care</span>
+      <button class="mobile-sidenav__close" id="closeNav" aria-label="Close navigation">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <%- include('./labTech_includeFolder/sideBar') %>
+  </nav>
+
+  <div class="dashboard-shell">
+
+    <!-- ── Desktop sidebar ──────────────────────────────────── -->
+    <aside class="sidebar" aria-label="Sidebar navigation">
+      <div class="sidebar__user">
+        <div class="sidebar__user-avatar">LT</div>
+        <div>
+          <div class="sidebar__user-name">Lab Technician</div>
+          <div class="sidebar__user-role">Active session</div>
+        </div>
+      </div>
+      <%- include('./labTech_includeFolder/sideBar') %>
+    </aside>
+
+    <!-- ── Main content ─────────────────────────────────────── -->
+    <main class="dashboard-content">
+
+      <%- include('./labTech_includeFolder/appointment') %>
+
+      <!-- Stat summary -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-card__icon amber"><i class="fa-solid fa-id-card"></i></div>
+          <div class="stat-card__value"><%= cardRecords.length %></div>
+          <div class="stat-card__label">Total Records</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon blue"><i class="fa-solid fa-calendar-day"></i></div>
+          <div class="stat-card__value" id="todayCount">—</div>
+          <div class="stat-card__label">Added Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon green"><i class="fa-solid fa-user-check"></i></div>
+          <div class="stat-card__value" id="uniqueDoctors">—</div>
+          <div class="stat-card__label">Doctors Involved</div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="table-card__header">
+          <div class="table-card__title">
+            <i class="fa-solid fa-folder-open" style="color: var(--color-accent); margin-right: 0.5rem;"></i>
+            Patient Card Records
+          </div>
+          <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="customSearchBox" class="search-input" placeholder="Search records…" aria-label="Search records">
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="recordsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Patient Name</th>
+                <th>Email</th>
+                <th>Doctor</th>
+                <th>Doctor Email</th>
+                <th>Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (cardRecords.length > 0) { %>
+                <% cardRecords.forEach((record, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><strong><%= record.patient_name || 'N/A' %></strong></td>
+                    <td><%= record.patient_email || 'N/A' %></td>
+                    <td><%= record.doc_name || 'N/A' %></td>
+                    <td><%= record.doc_email || 'N/A' %></td>
+                    <td><%= record.currentDate ? new Date(record.currentDate).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }) : 'N/A' %></td>
+                    <td>
+                      <a href="#" class="btn-icon edit" title="Edit record">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="#" class="btn-icon del" title="Delete record" onclick="return confirm('Delete this record?')">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </td>
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="8">
+                    <div class="table-empty">
+                      <i class="fa-regular fa-folder-open"></i>
+                      <p>No patient card records found.</p>
+                    </div>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /table-card -->
+
+    </main>
+  </div><!-- /dashboard-shell -->
+
+  <script src="/js/labTech.js"></script>
+  <script>
+    // Mobile nav
+    const menuBtn   = document.getElementById('menuBtn');
+    const closeNav  = document.getElementById('closeNav');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay   = document.getElementById('navOverlay');
+
+    function openNav() {
+      mobileNav.classList.add('is-open');
+      overlay.classList.add('is-visible');
+      document.body.classList.add('nav-open');
+    }
+    function closeNavFn() {
+      mobileNav.classList.remove('is-open');
+      overlay.classList.remove('is-visible');
+      document.body.classList.remove('nav-open');
+    }
+    menuBtn.addEventListener('click', openNav);
+    closeNav.addEventListener('click', closeNavFn);
+    overlay.addEventListener('click', closeNavFn);
+
+    // Live search
+    document.getElementById('customSearchBox').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('#recordsTable tbody tr').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+
+    // Stat counters
+    const today = new Date().toDateString();
+    const rows = document.querySelectorAll('#recordsTable tbody tr');
+    let todayCount = 0;
+    const doctors = new Set();
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      if (cells.length > 5) {
+        const dateText = cells[5].textContent.trim();
+        if (dateText !== 'N/A' && new Date(dateText).toDateString() === today) todayCount++;
+        const doc = cells[3].textContent.trim();
+        if (doc && doc !== 'N/A') doctors.add(doc);
+      }
+    });
+    document.getElementById('todayCount').textContent = todayCount;
+    document.getElementById('uniqueDoctors').textContent = doctors.size;
+  </script>
+</body>
+</html>

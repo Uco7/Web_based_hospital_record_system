@@ -1,0 +1,53 @@
+<div class="appointments-panel__header">
+    <div class="appointments-panel__title">
+        <i class="fa-solid fa-calendar-check" style="color: var(--color-accent);"></i>
+        Booked Appointment Schedule
+    </div>
+    <button type="button" class="appointments-panel__close" id="closeAppointmentsBtn">
+        <i class="fa-solid fa-xmark"></i> Close
+    </button>
+</div>
+
+<div class="table-scroll">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Patient Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (locals.appointment && appointment.length > 0) { %>
+                <% appointment.forEach((data, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><strong><%= data.name %></strong></td>
+                        <td><a href="mailto:<%= data.email %>" style="color: var(--color-accent-dark); text-decoration: underline; text-underline-offset: 2px;"><%= data.email %></a></td>
+                        <td><%= data.address || 'N/A' %></td>
+                        <td><span class="badge badge--neutral"><%= data.phone_no %></span></td>
+                        <td>
+                            <div class="table-action-group">
+                                <a href="#" class="btn-action btn-action--delete deleteAppointmentBtn" data-id="<%= data._id %>">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="6">
+                        <div class="table-empty">
+                            <i class="fa-solid fa-calendar-minus"></i>
+                            <p>No booked appointments found.</p>
+                        </div>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

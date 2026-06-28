@@ -1,0 +1,684 @@
+/* =========================================================
+   TOKENS (shared visual language with the rest of the site)
+   ========================================================= */
+:root {
+  --accent: #ff8c00;
+  --accent-dark: #e07b00;
+  --teal: #06c98f;
+  --teal-dark: #04a877;
+  --teal-soft: rgba(6, 201, 143, 0.12);
+  --ink: #16201c;
+  --muted: #5b6864;
+  --line: #e4e9e6;
+  --surface: #f6f9f8;
+  --white: #ffffff;
+  --danger: #d33f3f;
+
+  --sidebar-bg: #133a30;       /* deep teal-ink, replaces darkgoldenrod/--sidebar-bg clash */
+  --sidebar-active: rgba(255, 255, 255, 0.12);
+
+  --font-heading: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  --radius: 10px;
+  --shadow-sm: 0 2px 8px rgba(22, 32, 28, 0.06);
+  --shadow-md: 0 10px 30px -10px rgba(22, 32, 28, 0.18);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --sidebar-width: 260px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+/* =========================================================
+   TOP NAV (desktop)
+   ========================================================= */
+
+   /* Variant: pages that put the brand directly in an <h1> without a
+   .brand wrapper (e.g. simple dashboard, homepage nav) */
+.navbar h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+.navbar h1 #care {
+  color: var(--accent);
+  margin-left: 4px;
+}
+
+.navbar .li-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.navbar .li-center .nav-item {
+  list-style: none;
+}
+
+.navbar .li-center .nav-item a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: 100px;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.navbar .li-center .nav-item a:hover {
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+}
+
+#log-out a {
+  color: var(--danger);
+  font-weight: 600;
+}
+.navbar.nav-big,
+.navbar:not(.nav-sm) {
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.navbar .brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+.navbar .brand #care {
+  color: var(--accent);
+}
+
+.navbar img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.notification {
+  position: relative;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.notification .nav-link {
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.notification #red {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--danger);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userimg img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface);
+}
+
+.navbar .log-out {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.navbar .log-out:hover {
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+}
+
+/* =========================================================
+   MOBILE TOP BAR + SIDENAV
+   ========================================================= */
+.nav-sm {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  padding: 14px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.nav-sm .menu-icon {
+  font-size: 1.5rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: width 0.3s var(--ease);
+  padding-top: 60px;
+}
+
+.sidenav.sm-sidde {
+  background: var(--sidebar-bg);
+}
+
+.sidenav h1 {
+  font-family: var(--font-heading);
+  color: var(--white);
+  font-size: 1.3rem;
+  padding: 0 24px 20px;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  font-size: 2rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.sidenav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+}
+
+.sidenav ul li {
+  padding: 14px 16px;
+  border-radius: 8px;
+}
+
+.sidenav ul li.active,
+.sidenav ul li:hover {
+  background: var(--sidebar-active);
+}
+
+.sidenav ul li a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidenav ul li i {
+  color: var(--white);
+  margin-right: 10px;
+  width: 18px;
+  text-align: center;
+}
+
+/* =========================================================
+   DESKTOP SIDEBAR
+   ========================================================= */
+.sidebar {
+  background: var(--sidebar-bg);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  min-height: 100vh;
+  padding: 28px 14px;
+}
+
+.sidebar ul.cont,
+.sidebar ul:not(.cont) {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar ul.cont li,
+.sidebar ul:not(.cont) li {
+  padding: 13px 16px;
+  border-radius: 8px;
+  transition: background 0.2s var(--ease);
+}
+
+.sidebar ul.cont li.active,
+.sidebar ul.cont li:hover,
+.sidebar ul:not(.cont) li.active,
+.sidebar ul:not(.cont) li:hover {
+  background: var(--sidebar-active);
+}
+
+.sidebar ul.cont li a,
+.sidebar ul:not(.cont) li a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.sidebar ul.cont li i,
+.sidebar ul:not(.cont) li i {
+  color: var(--white);
+  margin-right: 10px;
+  width: 18px;
+  text-align: center;
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+.main-content {
+  padding: 28px clamp(16px, 3vw, 32px);
+}
+
+/* =========================================================
+   DATA TABLES (test results / purchased cards)
+   ========================================================= */
+.wrap-table {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  overflow-x: auto;
+  margin-bottom: 10rem;
+}
+
+.resolve-complaint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.resolve-complaint .h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.resolve-complaint .custom-search-input {
+  max-width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 0.9rem;
+}
+
+.resolve-complaint .custom-search-input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-soft);
+  outline: none;
+}
+
+.wrap-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.wrap-table table thead th {
+  background: var(--sidebar-bg);
+  color: var(--white);
+  text-align: left;
+  padding: 12px 14px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.wrap-table table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.wrap-table table tbody tr:hover {
+  background: var(--teal-soft);
+}
+
+.wrap-table table tbody tr td a {
+  color: var(--teal-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.wrap-table table tbody tr td a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   STAT BOXES (dashboard summary cards)
+   ========================================================= */
+.box-cont {
+  margin-bottom: 28px;
+}
+
+.welcome-heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+
+.box-cont .boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.box-cont .boxes .box {
+  flex: 1 1 220px;
+  max-width: 320px;
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  color: var(--white);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.box-cont .boxes .box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.box-cont .boxes .box1 {
+  background: var(--sidebar-bg);
+}
+
+.box-cont .boxes .box2 {
+  background: var(--teal-dark);
+}
+
+.box-cont .boxes .box3 {
+  background: var(--accent-dark);
+}
+
+.box-cont .boxes .box .num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.box-cont .boxes .box .box-txt {
+  display: block;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 4px;
+}
+
+/* =========================================================
+   FORM PANEL (purchase card / buy card)
+   ========================================================= */
+.wrap-form {
+  display: flex;
+  justify-content: center;
+}
+
+.wrap-form .card {
+  width: 100%;
+  max-width: 480px;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.wrap-form .card-header {
+  background: var(--teal) !important;
+  color: var(--white) !important;
+  padding: 20px 24px;
+  border: none;
+}
+
+.wrap-form .card-header h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+}
+
+.wrap-form .card-body {
+  padding: 24px;
+}
+
+.wrap-form .form-group {
+  margin-bottom: 16px;
+}
+
+.wrap-form label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.wrap-form .form-control {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.wrap-form .form-control::placeholder {
+  color: var(--muted);
+}
+
+.wrap-form .form-control:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-soft);
+  outline: none;
+}
+
+.wrap-form .status-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.wrap-form .status-check .form-check-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.wrap-form .btn-cont {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-print {
+  background: var(--accent);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.btn-print:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 850px) {
+  .nav-sm {
+    display: flex;
+  }
+  .navbar.nav-big {
+    display: none;
+  }
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    padding: 20px 16px;
+  }
+  .box-cont .boxes .box {
+    flex: 1 1 45%;
+  }
+}
+
+@media (min-width: 851px) {
+  .nav-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .box-cont .boxes .box {
+    flex: 1 1 100%;
+  }
+  .resolve-complaint {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .resolve-complaint .custom-search-input {
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   PROFILE CARD (patient profile page)
+   ========================================================= */
+.profile-wrap {
+  max-width: 760px;
+  margin: clamp(32px, 6vw, 64px) auto;
+  padding: 0 20px;
+}
+
+.profile-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.profile-heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  color: var(--ink);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.profile-photo-wrap {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.profile-photo-wrap img {
+  width: 160px;
+  height: 160px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-card .form-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.profile-card .form-control {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.profile-card .form-control:disabled {
+  background: var(--surface);
+  color: var(--ink);
+  opacity: 1;
+}
+
+.profile-card .btn-save {
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 8px;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.profile-card .btn-save:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 575.98px) {
+  .profile-card {
+    padding: 22px 18px;
+  }
+}
